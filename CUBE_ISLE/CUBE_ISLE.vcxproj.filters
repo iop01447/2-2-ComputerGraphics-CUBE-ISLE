@@ -25,6 +25,9 @@
     <Filter Include="Vector">
       <UniqueIdentifier>{67c50696-20da-4de8-ba24-687a7f7e6f84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modeling">
+      <UniqueIdentifier>{82b185f5-36a0-4a48-8570-ef4800d3db17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGLFramework.h">
@@ -48,6 +51,12 @@
     <ClInclude Include="Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Modeling</Filter>
+    </ClInclude>
+    <ClInclude Include="Zakka.h">
+      <Filter>Modeling</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -67,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
       <Filter>Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Modeling</Filter>
+    </ClCompile>
+    <ClCompile Include="Zakka.cpp">
+      <Filter>Modeling</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

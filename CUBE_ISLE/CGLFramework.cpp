@@ -30,19 +30,24 @@ void CGLFramework::Run()
 void CGLFramework::DrawScene()
 {
 	glClearColor(0.f, 0.f, 0.f, 0.f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	glLoadIdentity();
 	
 	Render();
+
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
 
 	glutSwapBuffers();
 }
 
 void CGLFramework::Render()
 {
-
+	m_zakka.Draw();
+	m_key.Draw();
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -68,6 +73,9 @@ void CGLFramework::Reshape(int w, int h)
 	//	0.0, 1.0, 0.0);			// 카메라의 기울기
 
 	camera.Initialize({ 0.f, 0.f, 0.f }, 610.f, 1.f, 1000.f, 60.f);
+
+	m_zakka.Init();
+	m_key.Init();
 }
 
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
@@ -180,6 +188,8 @@ void CGLFramework::Timer(int value)
 		auto info = PopPlayQueue();
 		m_soundmgr.Play(info.first, info.second);
 	}
+
+	m_key.Update();
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();
