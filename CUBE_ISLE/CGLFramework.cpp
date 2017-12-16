@@ -185,6 +185,12 @@ void CGLFramework::Motion(int x, int y)
 
 void CGLFramework::Timer(int value)
 {
+	if (is_fpv) {
+		// pos at up
+		Vector3 pos = cubemap.player.pos + Vector3{ 0,50,50 };
+		camera.SetFpvPosition(cubemap.player.pos, cubemap.player.pos);
+	}
+
 	// look up pos
 	FMOD_System_Instance()->update(0.016, camera.m_at - camera.m_pos, camera.m_up, camera.m_pos);
 	if (PlayQueueSize() > 0) // 이벤트 큐 패턴

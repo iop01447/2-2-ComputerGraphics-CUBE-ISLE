@@ -19,7 +19,8 @@ void Zakka::Init()
 	rot = { 10,0,0 };
 	size = 1;
 	slices = 30;
-	aabb = { pos - scl, pos + scl };
+	int tmp = 10;
+	aabb = { pos - tmp, pos + tmp };
 }
 
 void Zakka::Draw()
