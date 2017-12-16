@@ -104,10 +104,11 @@ void Zakka::draw_aabb() {
 	aabb.draw();
 }
 
-void Zakka::move(Camera& camera, unsigned char key)
+void Zakka::move(Camera& camera)
 {
 	Vector3 add;
 	int speed = 3;
+	if (jump_active) speed = 1;
 	add = camera.GetLookVector().normalize();
 	add.y = 0;
 	add *= speed;
@@ -132,22 +133,20 @@ void Zakka::move(Camera& camera, unsigned char key)
 	}
 	key = 0;
 
-	if (jump_active)
-		jump();
-
 	Init_aabb();
 	camera.SetFpvPosition(pos);
 }
 
-void Zakka::move_back(Camera& camera, unsigned char key)
+void Zakka::move_back(Camera& camera)
 {
 	Vector3 add;
 	int speed = 3;
+	if (jump_active) speed = 1;
 	add = camera.GetLookVector().normalize();
 	add.y = 0;
 	add *= speed;
 
-	switch (key)
+	switch (back_key)
 	{
 	case 'w':
 		add = -add;
@@ -165,6 +164,7 @@ void Zakka::move_back(Camera& camera, unsigned char key)
 		pos -= add;
 		break;
 	}
+	back_key = 0;
 
 	Init_aabb();
 	camera.SetFpvPosition(pos);
@@ -172,10 +172,20 @@ void Zakka::move_back(Camera& camera, unsigned char key)
 
 void Zakka::jump()
 {
-}
+	static int time = 0;
+	// cube size가 18
+	static int add = 2;
+	pos.y += add;
+	time++;
+	if (time > 18) {
+		add = 0;
+	}
+	if (time > 36) {
+		jump_active = false;
+		time = 0;
+		add = 2;
+	}
 
-void Zakka::jump_back()
-{
 }
 
 void Zakka::yRotate(Vector3& add, int angle) {
@@ -190,6 +200,13 @@ void Zakka::update()
 {
 	// 중력
 	pos.y -= 1;
+
+	// 점프
+	if (jump_active) {
+		jump();
+		key = jump_key;
+	}
+
 	Init_aabb();
 }
 
@@ -197,4 +214,7 @@ void Zakka::update_back()
 {
 	pos.y += 1;
 	Init_aabb();
+
+//	if (jump_active)
+//		jump_active = false;
 }
