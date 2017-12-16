@@ -139,6 +139,7 @@ public:
 			player.move_back(camera);
 			player.key = player.back_key = 0;
 		}
+		collide_check_player_key();
 	}
 
 	bool collide_check_player_map() {
@@ -150,6 +151,18 @@ public:
 						return true;
 					}
 				}
+			}
+		}
+		return false;
+	}
+
+	bool collide_check_player_key() {
+		for (int i = 0; i < 7; i++) {
+			if (!key[i].exsist) continue;
+			if (AabbAabbIntersection(player.aabb, key[i].aabb)) {
+				player.get_key_num++;
+				key[i].exsist = false;
+				return true;
 			}
 		}
 		return false;

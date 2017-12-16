@@ -20,6 +20,7 @@ void Zakka::Init()
 	rot = { 0,180,0 };
 	size = 1;
 	slices = 30;
+	get_key_num = 0;
 	Init_aabb();
 }
 

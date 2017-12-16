@@ -17,6 +17,7 @@ public:
 	bool jump_active = false;
 	unsigned char key, back_key;
 	unsigned char jump_key;
+	int get_key_num;
 
 	void Init();
 	void Init_aabb();
