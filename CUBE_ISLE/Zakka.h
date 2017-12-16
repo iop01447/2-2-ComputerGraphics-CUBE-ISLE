@@ -1,4 +1,7 @@
 #pragma once
+#include "stdafx.h"
+#include "Camera.h"
+
 class Zakka
 {
 public:
@@ -24,7 +27,8 @@ public:
 
 	void Init();
 	void Init_aabb();
-	void Draw();
+	void rotate(Camera& look);
+	void Draw(Camera&);
 	void draw_aabb();
 	void move();
 };

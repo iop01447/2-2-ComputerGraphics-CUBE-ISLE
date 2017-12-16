@@ -59,7 +59,7 @@ void CGLFramework::Render()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
 
-	cubemap.draw();
+	cubemap.draw(camera);
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -108,10 +108,6 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	else if (key == '+') {
 		camera.zoom(10);
 	}
-	else if (key == '0') {	
-	}
-	else if (key == '.') {
-	}
 	else if (key == 't') {
 		camera.Rotate(0, radian(10));
 	}
@@ -125,12 +121,7 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 		camera.Rotate(radian(-10), 0);
 	}
 	else if (key == ' ') { // 제어점 추가
-	
 		//	PushPlayQueue("Click", cube.cardinal.current_pts);
-	}
-	else if (key == 'z') { // 제어점 삭제
-	}
-	else if (key == 'x') { // 제어점 초기화
 	}
 	else if (key == '1') {
 		is_fpv = true;
@@ -183,13 +174,12 @@ void CGLFramework::Mouse(int button, int state, int x, int y)
 
 void CGLFramework::Motion(int x, int y)
 {
-	if (is_fpv) return;
+	//if (is_fpv) return;
 	if (drag) {
 		mEnd = { (float)x,(float)y };
 		/*cube.yRot = (cube.yRot + (int)(mEnd.x - mStart.x)) % 360;
 		cube.xRot = (cube.xRot + (int)(mEnd.y - mStart.y)) % 360;*/
-		int yRot = ((int)(mEnd.x - mStart.x)) % 360;
-		yRot = -yRot;
+		int yRot = -((int)(mEnd.x - mStart.x)) % 360;
 		int xRot = ((int)(mEnd.y - mStart.y)) % 360;
 		camera.Rotate(radian(yRot), radian(xRot));
 		mStart = { (float)x,(float)y };
@@ -200,13 +190,12 @@ void CGLFramework::Timer(int value)
 {
 	if (is_fpv) {
 		// pos at up
-		Vector3 pos = cubemap.player.pos + Vector3{ 0,50,-50 };
-		Vector3 at = cubemap.player.pos + Vector3{ 0,0,50 };
-		camera.SetFpvPosition(pos, at);
+		Vector3 at = cubemap.player.pos;
+		camera.SetFpvPosition(at);
 	}
 
 	// look up pos
-	FMOD_System_Instance()->update(0.016, camera.m_at - camera.m_pos, camera.m_up, camera.m_pos);
+	FMOD_System_Instance()->update(0.016, camera.GetLookVector(), camera.m_up, camera.m_pos);
 	if (PlayQueueSize() > 0) // 이벤트 큐 패턴
 	{
 		auto info = PopPlayQueue();

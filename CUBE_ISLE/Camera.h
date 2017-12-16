@@ -54,6 +54,7 @@ public:
 
 	void SetAspect(float aspect) { m_aspect = aspect; }
 	Vector3 GetAtPos()	const { return m_at; }
+	Vector3 GetLookVector() const { return m_pos - m_at; }
 
 	void SetAtPos(const Vector3& pos) { m_at = pos; LookAt(); }
 	void SetAtPos(Vector3&& pos)	noexcept { m_at = std::move(pos); LookAt(); }
@@ -98,6 +99,7 @@ public:
 		glMatrixMode(GL_MODELVIEW);
 	}
 
+	// at에서 카메라 위치를 보는 방향
 	Vector3 GetBackLookVector() const
 	{
 		// 초기값이 0,0,1인데?
@@ -109,11 +111,12 @@ public:
 		}.normalize();
 	}
 
-	void SetFpvPosition(const Vector3& pos, const Vector3& at, const Vector3& up = {0,1,0}) {
-		m_distance = 100;
-		m_pos = pos;
+	void SetFpvPosition(const Vector3& at, const Vector3& up = {0,1,0}) {
+		m_distance = 50;
 		m_at = at;
 		m_up = up;
+
+		m_pos = eye();
 
 		LookAt();
 	}
