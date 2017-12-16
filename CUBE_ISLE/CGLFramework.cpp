@@ -125,6 +125,7 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 		camera.Rotate(radian(-10), 0);
 	}
 	else if (key == ' ') { // 제어점 추가
+		cubemap.player.jump_active = true;
 		//	PushPlayQueue("Click", cube.cardinal.current_pts);
 	}
 	else if (key == '1') {
@@ -137,9 +138,8 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	}
 	else if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
 		if (!is_fpv) return;
-		cubemap.player.move(camera, key);
-		if (cubemap.collide_check_player_map())
-			cubemap.player.move_back(camera, key);
+		if (cubemap.player.jump_active) cubemap.player.jump_key = key;
+		cubemap.player.key = cubemap.player.back_key = key;
 	}
 
 	glutPostRedisplay();					// 화면 재출력
@@ -207,7 +207,7 @@ void CGLFramework::Timer(int value)
 		m_soundmgr.Play(info.first, info.second);
 	}
 
-	cubemap.update();
+	cubemap.update(camera, is_fpv);
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();

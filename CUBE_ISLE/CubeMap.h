@@ -122,7 +122,7 @@ public:
 			key[i].draw_aabb();
 	}
 
-	void update() {
+	void update(Camera& camera, bool is_fpv) {
 		for(int i=0; i<7; i++)
 			key[i].Update();
 		
@@ -130,6 +130,15 @@ public:
 		player.update();
 		if (collide_check_player_map())
 			player.update_back();
+
+		// ÀÌµ¿
+		if (!is_fpv) return;
+		player.move(camera);
+	//	player.key = 0;
+		if (collide_check_player_map()) {
+			player.move_back(camera);
+			player.key = player.back_key = 0;
+		}
 	}
 
 	bool collide_check_player_map() {
