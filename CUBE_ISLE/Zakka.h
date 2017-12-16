@@ -19,5 +19,7 @@ public:
 	void Init_aabb();
 	void Draw();
 	void draw_aabb();
+	void move(Camera& camera, unsigned char key);
+	void yRotate(Vector3& add, int angle);
 };
 

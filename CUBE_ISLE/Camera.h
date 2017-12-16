@@ -121,9 +121,5 @@ public:
 		LookAt();
 	}
 
-	void FpvRotateInit() {
-		m_vertical = radian(180);
-	}
-
 	Vector3 eye() const { return GetBackLookVector() * m_distance + GetAtPos(); }
 };
