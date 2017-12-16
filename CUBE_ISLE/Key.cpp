@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Key.h"
 
-
-
 Key::Key()
 {
 	Init();
@@ -15,6 +13,7 @@ Key::~Key()
 
 void Key::Init()
 {
+	exsist = true;
 	pos = { 0,0,0 };
 	scl = { 1.f,1.f,0.9f };
 	rot = { 0,0,0 };
@@ -32,6 +31,8 @@ void Key::Init_aabb()
 
 void Key::Draw()
 {
+	if (!exsist) return;
+
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
 	glRotatef(rot.x, 1.0f, 0.0f, 0.0f);
@@ -77,10 +78,14 @@ void Key::Draw()
 
 void Key::draw_aabb()
 {
+	if (!exsist) return;
+
 	aabb.draw();
 }
 
 void Key::Update()
 {
+	if (!exsist) return;
+
 	rot.y = ((int)(rot.y + 1)) % 360;
 }

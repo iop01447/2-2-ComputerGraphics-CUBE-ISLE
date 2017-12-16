@@ -13,6 +13,7 @@ public:
 	float size;
 	int slices;
 	Aabb aabb;
+	bool exsist;
 
 	void Init();
 	void Init_aabb();

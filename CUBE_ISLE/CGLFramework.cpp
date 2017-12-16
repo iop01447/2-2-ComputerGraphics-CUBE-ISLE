@@ -140,6 +140,7 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	}
 	else if (key == '3') {
 		is_fpv = false;
+		player_y_rot = 180;
 		camera.Initialize();
 	}
 	else if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
