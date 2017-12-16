@@ -20,6 +20,8 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 	m_soundmgr.AddSound("BGM", "Sound/RefunctGameOst.mp3", SoundType::Stream);
 	PushPlayQueue("BGM", Vector3(0, 0, 0));
 //	m_soundmgr.AddSound("Click", "Sound/Equip.wav", 700, 1000); // cube 크기 기준으로
+
+	skybox.init();
 }
 
 void CGLFramework::Run()
@@ -31,14 +33,15 @@ void CGLFramework::DrawScene()
 {
 	glClearColor(0.f, 0.f, 0.f, 0.f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glFrontFace(GL_CW);
 
 	glLoadIdentity();
-	
+
 	Render();
 
 	glDisable(GL_DEPTH_TEST);
@@ -50,6 +53,11 @@ void CGLFramework::DrawScene()
 
 void CGLFramework::Render()
 {
+	glEnable(GL_TEXTURE_2D);
+	skybox.draw(camera.m_pos);
+	glDisable(GL_TEXTURE_2D);
+	glClear(GL_DEPTH_BUFFER_BIT);
+
 	cubemap.draw();
 }
 

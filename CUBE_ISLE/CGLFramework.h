@@ -5,6 +5,7 @@
 #include "Zakka.h"
 #include "Key.h"
 #include "CubeMap.h"
+#include "Skybox.h"
 
 class CGLFramework		// c의 의미: c++ 클래스다 / 구조체랑 구분
 {
@@ -86,4 +87,6 @@ private:
 
 	//
 	CubeMap				cubemap;
+
+	Skybox				skybox;
 };
