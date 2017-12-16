@@ -13,6 +13,7 @@ public:
 	Aabb aabb;
 
 	void Init();
+	void Init_aabb();
 	void Draw();
 	void draw_aabb();
 };

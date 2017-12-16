@@ -1,18 +1,23 @@
 #pragma once
+#include "stdafx.h"
+
 class Key
 {
 public:
 	Key();
 	~Key();
 
-	float m_xtrs, m_ytrs, m_ztrs;
-	float m_xscl, m_yscl, m_zscl;
-	int m_xrot, m_yrot, m_zrot;
+	Vector3 pos;
+	Vector3 scl;
+	Vector3 rot;
 	float size;
 	int slices;
+	Aabb aabb;
 
 	void Init();
+	void Init_aabb();
 	void Draw();
+	void draw_aabb();
 	void Update();
 };
 

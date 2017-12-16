@@ -16,7 +16,6 @@ public:
 	void draw() {
 		if (!exsist) return;
 
-
 		glPushMatrix();
 		glTranslatef(pos.x, pos.y, pos.z);
 		if (is_sea)
