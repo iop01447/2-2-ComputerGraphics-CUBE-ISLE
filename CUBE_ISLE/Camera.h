@@ -10,8 +10,8 @@ public:
 
 	float m_distance{ 0 };	// zoom
 
-	float m_vertical{ 0 };	// ↕ 회전각
-	float m_horizontal{ 0 };	// ↔ 회전각
+	float m_vertical{ 0 };	// ↔ 회전각
+	float m_horizontal{ 0 };	// ↕ 회전각
 
 	float m_aspect{ 0 };
 	float m_near{ 0.f };
@@ -119,6 +119,10 @@ public:
 		m_pos = eye();
 
 		LookAt();
+	}
+
+	void FpvRotateInit() {
+		m_vertical = radian(180);
 	}
 
 	Vector3 eye() const { return GetBackLookVector() * m_distance + GetAtPos(); }

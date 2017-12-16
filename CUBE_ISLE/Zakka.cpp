@@ -16,7 +16,7 @@ void Zakka::Init()
 {
 	pos = { 0,0,0 };
 	scl = { 10,10,9 };
-	rot = { 0,180,0 };
+	rot = { 0,0,0 };
 	size = 1;
 	slices = 30;
 	Init_aabb();
@@ -27,30 +27,13 @@ void Zakka::Init_aabb()
 	aabb = { pos - scl, pos + scl };
 }
 
-void Zakka::rotate(Camera& camera)
-{
-	Vector3 original_vector = { 0, 0, -1 }; // 기존 look 방향
-	Vector3 x = camera.m_pos;
-	Vector3 y = camera.m_at;
-	x.y = y.y = 0;
-	Vector3 go_vector = x - y;
-	go_vector = go_vector.normalize();
-	float theta = acos(original_vector.dot(go_vector));
-	theta = acos(go_vector.dot(original_vector));
-
-	theta = theta / PIE * 180;
-
-	glRotatef(theta, 0, 1, 0);
-}
-
-void Zakka::Draw(Camera& camera)
+void Zakka::Draw()
 {
 	glPushMatrix();
 
 	glTranslatef(pos.x, pos.y, pos.z);
 	glRotatef(rot.x, 1.0f, 0.0f, 0.0f);
 	glRotatef(rot.y, 0.0f, 1.0f, 0.0f);
-	rotate(camera);
 	glRotatef(rot.z, 0.0f, 0.0f, 1.0f);
 	glScalef(scl.x, scl.y, scl.z);
 
