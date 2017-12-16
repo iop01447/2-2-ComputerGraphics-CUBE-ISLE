@@ -126,7 +126,7 @@ public:
 		for(int i=0; i<7; i++)
 			key[i].Update();
 		
-		// 중력
+		// 중력 & 점프
 		player.update();
 		if (collide_check_player_map())
 			player.update_back();
@@ -148,6 +148,17 @@ public:
 				for (int k = 0; k < MAP_SIZE; k++) {
 					if (!map[i][j][k].exsist) continue;
 					if (AabbAabbIntersection(player.aabb, map[i][j][k].aabb)) {
+						if (map[i][j][k].is_sea) {
+							HWND hwnd = GetForegroundWindow();
+							if (MessageBox(hwnd,
+								TEXT("새로운 게임을 플레이하시겠습니까?"),
+								TEXT("사망"), MB_YESNO) == IDNO) {
+								exit(0);
+							}
+							else {
+								Init();
+							}
+						}
 						return true;
 					}
 				}
@@ -162,6 +173,17 @@ public:
 			if (AabbAabbIntersection(player.aabb, key[i].aabb)) {
 				player.get_key_num++;
 				key[i].exsist = false;
+				if (player.get_key_num == 7) {
+					HWND hwnd = GetForegroundWindow();
+					if (MessageBox(hwnd,
+						TEXT("Thank You ! \n새로운 게임을 플레이하시겠습니까?"),
+						TEXT("게임 클리어"), MB_YESNO) == IDNO) {
+						exit(0);
+					}
+					else {
+						Init();
+					}
+				}
 				return true;
 			}
 		}

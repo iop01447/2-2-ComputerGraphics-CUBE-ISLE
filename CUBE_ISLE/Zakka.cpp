@@ -186,7 +186,6 @@ void Zakka::jump()
 		time = 0;
 		add = 2;
 	}
-
 }
 
 void Zakka::yRotate(Vector3& add, int angle) {
