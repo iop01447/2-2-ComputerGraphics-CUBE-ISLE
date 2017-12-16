@@ -47,19 +47,21 @@ void CGLFramework::DrawScene()
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
 	glDisable(GL_FOG);
-
+	glDisable(GL_LIGHTING);
+	glDisable(GL_COLOR_MATERIAL);
+	glDisable(GL_LIGHT0);
 	glutSwapBuffers();
 }
 
 void CGLFramework::Render()
 {
-
 	glFrontFace(GL_CW);
 	glEnable(GL_TEXTURE_2D);
 	skybox.draw(camera.m_pos);
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
+	light.light_global();
 	
 	glEnable(GL_FOG);
 	fog.draw();
