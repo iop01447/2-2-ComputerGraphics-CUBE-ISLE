@@ -3,6 +3,7 @@
 #include "Cube.h"
 #include "Zakka.h"
 #include "Key.h"
+#include "Camera.h"
 
 #define MAP_SIZE 20
 #define Y_SIZE 3
@@ -79,7 +80,7 @@ public:
 
 	}
 
-	void draw() {
+	void draw(Camera& camera) {
 		float map_size = HEIGHT / 2;
 		float size = map_size / MAP_SIZE;
 
@@ -93,7 +94,7 @@ public:
 		}
 
 		// player draw
-		player.Draw();
+		player.Draw(camera);
 
 		// key draw
 		for (int i = 0; i < 7; i++)

@@ -54,6 +54,7 @@ public:
 
 	void SetAspect(float aspect) { m_aspect = aspect; }
 	Vector3 GetAtPos()	const { return m_at; }
+	Vector3 GetLookVector() const { return m_pos - m_at; }
 
 	void SetAtPos(const Vector3& pos) { m_at = pos; LookAt(); }
 	void SetAtPos(Vector3&& pos)	noexcept { m_at = std::move(pos); LookAt(); }
