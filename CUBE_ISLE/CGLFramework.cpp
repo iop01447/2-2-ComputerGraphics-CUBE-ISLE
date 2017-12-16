@@ -174,13 +174,12 @@ void CGLFramework::Mouse(int button, int state, int x, int y)
 
 void CGLFramework::Motion(int x, int y)
 {
-	if (is_fpv) return;
+	//if (is_fpv) return;
 	if (drag) {
 		mEnd = { (float)x,(float)y };
 		/*cube.yRot = (cube.yRot + (int)(mEnd.x - mStart.x)) % 360;
 		cube.xRot = (cube.xRot + (int)(mEnd.y - mStart.y)) % 360;*/
-		int yRot = ((int)(mEnd.x - mStart.x)) % 360;
-		yRot = -yRot;
+		int yRot = -((int)(mEnd.x - mStart.x)) % 360;
 		int xRot = ((int)(mEnd.y - mStart.y)) % 360;
 		camera.Rotate(radian(yRot), radian(xRot));
 		mStart = { (float)x,(float)y };
@@ -191,9 +190,8 @@ void CGLFramework::Timer(int value)
 {
 	if (is_fpv) {
 		// pos at up
-		Vector3 pos = cubemap.player.pos + Vector3{ 0,50,-50 };
-		Vector3 at = cubemap.player.pos + Vector3{ 0,0,50 };
-		camera.SetFpvPosition(pos, at);
+		Vector3 at = cubemap.player.pos;
+		camera.SetFpvPosition(at);
 	}
 
 	// look up pos
