@@ -59,7 +59,7 @@ void CGLFramework::Render()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
 
-	cubemap.draw(camera);
+	cubemap.draw();
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -125,6 +125,7 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	}
 	else if (key == '1') {
 		is_fpv = true;
+		camera.FpvRotateInit();
 	}
 	else if (key == '3') {
 		is_fpv = false;
@@ -174,15 +175,16 @@ void CGLFramework::Mouse(int button, int state, int x, int y)
 
 void CGLFramework::Motion(int x, int y)
 {
-	//if (is_fpv) return;
 	if (drag) {
 		mEnd = { (float)x,(float)y };
-		/*cube.yRot = (cube.yRot + (int)(mEnd.x - mStart.x)) % 360;
-		cube.xRot = (cube.xRot + (int)(mEnd.y - mStart.y)) % 360;*/
 		int yRot = -((int)(mEnd.x - mStart.x)) % 360;
 		int xRot = ((int)(mEnd.y - mStart.y)) % 360;
 		camera.Rotate(radian(yRot), radian(xRot));
 		mStart = { (float)x,(float)y };
+
+		// player È¸Àü
+		if (!is_fpv) return;
+		cubemap.player.rot.y = (int)(cubemap.player.rot.y + yRot) % 360;
 	}
 }
 

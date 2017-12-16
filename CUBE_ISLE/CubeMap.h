@@ -80,7 +80,7 @@ public:
 
 	}
 
-	void draw(Camera& camera) {
+	void draw() {
 		float map_size = HEIGHT / 2;
 		float size = map_size / MAP_SIZE;
 
@@ -94,7 +94,7 @@ public:
 		}
 
 		// player draw
-		player.Draw(camera);
+		player.Draw();
 
 		// key draw
 		for (int i = 0; i < 7; i++)

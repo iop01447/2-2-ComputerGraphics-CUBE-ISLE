@@ -27,8 +27,7 @@ public:
 
 	void Init();
 	void Init_aabb();
-	void rotate(Camera& look);
-	void Draw(Camera&);
+	void Draw();
 	void draw_aabb();
 	void move();
 };
