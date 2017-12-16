@@ -31,6 +31,9 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{90b8eca8-c8e6-43e7-8c1b-a8247a26cfd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{b98ee94e-354c-4176-8d29-924105e71744}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGLFramework.h">
@@ -75,6 +78,9 @@
     <ClInclude Include="Fog.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -106,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="Skybox.cpp">
       <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Light</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

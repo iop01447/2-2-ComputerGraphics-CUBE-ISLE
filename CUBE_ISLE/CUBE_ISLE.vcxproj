@@ -149,6 +149,7 @@
     <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Fog.h" />
     <ClInclude Include="Key.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClCompile Include="CGLFramework.cpp" />
     <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
