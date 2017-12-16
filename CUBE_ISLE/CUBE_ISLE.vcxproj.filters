@@ -57,6 +57,9 @@
     <ClInclude Include="Zakka.h">
       <Filter>Modeling</Filter>
     </ClInclude>
+    <ClInclude Include="CubeMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -17,9 +17,9 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 	glutCreateWindow(caption);
 
 	// 사운드
-//	m_soundmgr.AddSound("BGM", "Sound/Ramble_loop.mp3", SoundType::Stream);
+	m_soundmgr.AddSound("BGM", "Sound/RefunctGameOst.mp3", SoundType::Stream);
+	PushPlayQueue("BGM", Vector3(0, 0, 0));
 //	m_soundmgr.AddSound("Click", "Sound/Equip.wav", 700, 1000); // cube 크기 기준으로
-//	PushPlayQueue("BGM", Vector3(0, 0, 0));
 }
 
 void CGLFramework::Run()

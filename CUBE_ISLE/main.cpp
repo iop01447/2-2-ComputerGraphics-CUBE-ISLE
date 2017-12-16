@@ -10,7 +10,7 @@ void main(int argc, char* argv[])
 {
 	srand((unsigned)time(NULL));
 
-	framework.Initialize(argc, argv, WIDTH, HEIGHT, 100, 100, "CUBE_ISLE");
+	framework.Initialize(argc, argv, WIDTH, HEIGHT, 100, 100, "CUBE ISLE");
 
 	framework.RegisterDrawFunction([]() {framework.DrawScene(); });
 	framework.RegisterReshapeFunction([](int w, int h) {framework.Reshape(w, h); });

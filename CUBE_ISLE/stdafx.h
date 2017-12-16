@@ -27,8 +27,8 @@ using namespace std;
 
 /////////////////////////////////////////////////////
 
-#define WIDTH 1000
-#define HEIGHT 700
+#define WIDTH 1280
+#define HEIGHT 720
 
 #define PIE 3.141592653589
 #define EPSILON 0.0001	// 매우 작은 실수
