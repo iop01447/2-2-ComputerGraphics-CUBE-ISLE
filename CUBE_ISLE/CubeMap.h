@@ -77,7 +77,7 @@ public:
 		// player init
 		player.pos = map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].pos + Vector3{0, size / 2 + player.scl.y, 0};
 		player.Init_aabb();
-
+		map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].exsist = true;
 	}
 
 	void draw() {
@@ -86,7 +86,7 @@ public:
 
 		// map draw
 		for (int i = 0; i < MAP_SIZE; i++) {
-			for (int j = 0; j < MAP_SIZE; j++) {
+			for (int j = 0; j < Y_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
 					map[i][j][k].draw();
 				}
@@ -107,7 +107,7 @@ public:
 	void draw_aabb() {
 		// map aabb
 		for (int i = 0; i < MAP_SIZE; i++) {
-			for (int j = 0; j < MAP_SIZE; j++) {
+			for (int j = 0; j < Y_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
 					map[i][j][k].draw_aabb();
 				}
@@ -125,5 +125,24 @@ public:
 	void update() {
 		for(int i=0; i<7; i++)
 			key[i].Update();
+		
+		// ม฿ทย
+		player.update();
+		if (collide_check_player_map())
+			player.update_back();
+	}
+
+	bool collide_check_player_map() {
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < Y_SIZE; j++) {
+				for (int k = 0; k < MAP_SIZE; k++) {
+					if (!map[i][j][k].exsist) continue;
+					if (AabbAabbIntersection(player.aabb, map[i][j][k].aabb)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 };

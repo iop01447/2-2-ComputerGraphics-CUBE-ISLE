@@ -99,8 +99,8 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 		exit(0);
 	}
 	else if (key == 'i') { // 초기화
-		is_fpv = false;
-		camera.Initialize();
+//		is_fpv = false;
+//		camera.Initialize();
 	}
 	else if (key == '-') {
 		camera.zoom(-10);
@@ -134,6 +134,8 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	else if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
 		if (!is_fpv) return;
 		cubemap.player.move(camera, key);
+		if (cubemap.collide_check_player_map())
+			cubemap.player.move_back(camera, key);
 	}
 
 	glutPostRedisplay();					// 화면 재출력
