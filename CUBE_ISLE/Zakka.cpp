@@ -4,6 +4,7 @@
 
 Zakka::Zakka()
 {
+	Init();
 }
 
 
@@ -13,25 +14,23 @@ Zakka::~Zakka()
 
 void Zakka::Init()
 {
-	m_xtrs = m_ytrs = m_ztrs = 0;
-	m_xscl = 10;
-	m_yscl = 10;
-	m_zscl = 9;
-	m_xrot = 10;
-	m_yrot = m_zrot = 0;
+	pos = { 0,0,0 };
+	scl = { 10,10,9 };
+	rot = { 10,0,0 };
 	size = 1;
 	slices = 30;
+	aabb = { pos - scl, pos + scl };
 }
 
 void Zakka::Draw()
 {
 	glPushMatrix();
 
-	glTranslatef(m_xtrs, m_ytrs, m_ztrs);
-	glRotatef(m_xrot, 1.0f, 0.0f, 0.0f);
-	glRotatef(m_yrot, 0.0f, 1.0f, 0.0f);
-	glRotatef(m_zrot, 0.0f, 0.0f, 1.0f);
-	glScalef(m_xscl, m_yscl, m_zscl);
+	glTranslatef(pos.x, pos.y, pos.z);
+	glRotatef(rot.x, 1.0f, 0.0f, 0.0f);
+	glRotatef(rot.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(rot.z, 0.0f, 0.0f, 1.0f);
+	glScalef(scl.x, scl.y, scl.z);
 
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glutSolidSphere(size, slices, slices);
@@ -95,4 +94,8 @@ void Zakka::Draw()
 	glPopMatrix();
 
 	glPopMatrix();
+}
+
+void Zakka::draw_aabb() {
+	aabb.draw();
 }

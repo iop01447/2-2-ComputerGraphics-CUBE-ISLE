@@ -75,7 +75,6 @@ void CGLFramework::Reshape(int w, int h)
 
 	camera.Initialize({ 0.f, 0.f, 0.f }, 610.f, 1.f, 1000.f, 60.f);
 
-	m_zakka.Init();
 	m_key.Init();
 }
 
@@ -84,8 +83,8 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	if (key == 'p' || key == 'P') {
 		cubemap.Init();
 	}
-	else if (key == 'o' || key == 'O') {
-	
+	else if (key == 'g' || key == 'G') {
+		cubemap.is_draw_aabb = !cubemap.is_draw_aabb;
 	}
 	else if (key == 'q' || key == 'Q') { // Á¾·á
 		exit(0);

@@ -145,6 +145,7 @@
     <ClInclude Include="Aabb.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CGLFramework.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="SoundManager.h" />

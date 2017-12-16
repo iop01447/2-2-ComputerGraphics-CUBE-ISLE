@@ -1,33 +1,7 @@
 #pragma once
 #include "stdafx.h"
-
-class Cube {
-public:
-	bool exsist;
-	Vector3 color;
-	Vector3 pos;
-	int size;
-	Aabb aabb;
-
-	Cube() = default;
-	~Cube() = default;
-
-	void draw() {
-		if (!exsist) return;
-
-		glPushMatrix();
-		glTranslatef(pos.x, pos.y, pos.z);
-		glColor3fv(&color);
-		glutSolidCube(size);
-		glPopMatrix();
-	}
-
-	void draw_aabb() {
-		if (!exsist) return;
-
-			aabb.draw();
-	}
-};
+#include "Cube.h"
+#include "Zakka.h"
 
 #define MAP_SIZE 20
 #define Y_SIZE 3
@@ -36,17 +10,19 @@ class CubeMap {
 public:
 	Cube map[MAP_SIZE][Y_SIZE][MAP_SIZE];
 	bool is_draw_aabb = false;
-	
+	Zakka player;
+
 	CubeMap() {
 		Init();
 	}
 	~CubeMap() = default;
 
 	void Init() {
+		// cubemap init
 		Vector3 key_color = { (128 + rand() % 127) / 255.f, (128 + rand() % 127) / 255.f, (128 + rand() % 127) / 255.f };
 		float map_size = HEIGHT / 2;
 		float size = map_size / MAP_SIZE;
-		Vector3 start_pos = { -map_size / 2 + size/2, -100 -size*Y_SIZE + size/2, map_size / 2 - size/2 };
+		Vector3 start_pos = { -map_size / 2 + size/2, -size*Y_SIZE + size/2, map_size / 2 - size/2 };
 		Vector3 pos = start_pos;
 
 		for (int i = 0; i < MAP_SIZE; i++) {	// x
@@ -82,12 +58,16 @@ public:
 			cout << x << " " << y << " " << z << endl;
 		}
 		cout << endl;
+
+		// player init
+		player.pos = map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].pos + Vector3{0, size / 2 + player.scl.y, 0};
 	}
 
 	void draw() {
 		float map_size = HEIGHT / 2;
 		float size = map_size / MAP_SIZE;
 
+		// map draw
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
@@ -96,10 +76,15 @@ public:
 			}
 		}
 
+		// player draw
+		player.Draw();
+
+		// aabb draw
 		if (is_draw_aabb)
 			draw_aabb();
 	}
 	void draw_aabb() {
+		// map aabb
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < MAP_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
@@ -107,5 +92,8 @@ public:
 				}
 			}
 		}
+
+		// player aabb
+		player.draw_aabb();
 	}
 };

@@ -85,7 +85,6 @@ private:
 	CSoundManager		m_soundmgr;
 
 	//	Modeling
-	Zakka				m_zakka;
 	Key					m_key;
 
 	//
