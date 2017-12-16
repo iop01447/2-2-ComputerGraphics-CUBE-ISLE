@@ -37,6 +37,7 @@ void CGLFramework::DrawScene()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
+	glEnable(GL_FOG);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glLoadIdentity();
@@ -46,6 +47,7 @@ void CGLFramework::DrawScene()
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
+	glDisable(GL_FOG);
 
 	glutSwapBuffers();
 }
@@ -58,7 +60,9 @@ void CGLFramework::Render()
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
-
+	
+	//glEnable(GL_FOG);
+	fog.draw();
 	cubemap.draw();
 }
 
