@@ -37,7 +37,6 @@ void CGLFramework::DrawScene()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
-	glEnable(GL_FOG);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glLoadIdentity();
@@ -54,6 +53,7 @@ void CGLFramework::DrawScene()
 
 void CGLFramework::Render()
 {
+
 	glFrontFace(GL_CW);
 	glEnable(GL_TEXTURE_2D);
 	skybox.draw(camera.m_pos);
@@ -61,7 +61,7 @@ void CGLFramework::Render()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
 	
-	//glEnable(GL_FOG);
+	glEnable(GL_FOG);
 	fog.draw();
 	cubemap.draw();
 }

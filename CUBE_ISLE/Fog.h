@@ -8,7 +8,7 @@ public:
 	};
 	~Fog() = default;
 
-	GLfloat fog_color[4] = { 0.8f, 0.8f, 0.8f, 1.0f };
+	GLfloat fog_color[4] = { 0.4f, 0.8f, 0.8f, 1.0f };
 	GLfloat density;
 	GLfloat start;
 	GLfloat end;
@@ -16,8 +16,8 @@ public:
 
 	void init() {
 		density = 0.005f;
-		start = 10;
-		end = 50;
+		start = 2;
+		end = 3;
 	}
 
 	void draw() {
