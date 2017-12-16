@@ -39,6 +39,9 @@ public:
 	// 반대방향벡터
 	Vector3 flip();
 
+	// opengl color
+	Vector3 color();
+
 	// 연산자 오버로드
 	Vector3& operator += (const Vector3& other) {
 		return *this = *this + other;

@@ -78,8 +78,6 @@ void Zakka::Draw()
 
 	//º¼
 	glPushMatrix();
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glTranslatef(-size / 4, 3 * size / 7, 6 * size / 7);
 	glScalef(2.0f, 1.0f, 1.0f);
 	glColor4f(1.0f, 0.4f, 0.2f, 0.4f);
@@ -90,7 +88,6 @@ void Zakka::Draw()
 	glTranslatef(size / 4, 3 * size / 7, 6 * size / 7);
 	glScalef(2.0f, 1.0f, 1.0f);
 	glutSolidSphere(size / 20, 10, 10);
-	glDisable(GL_BLEND);
 	glPopMatrix();
 
 	glPopMatrix();

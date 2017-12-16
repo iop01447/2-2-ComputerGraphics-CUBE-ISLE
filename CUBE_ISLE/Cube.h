@@ -8,6 +8,7 @@ public:
 	Vector3 pos;
 	int size;
 	Aabb aabb;
+	bool is_sea = false;
 
 	Cube() = default;
 	~Cube() = default;
@@ -15,9 +16,13 @@ public:
 	void draw() {
 		if (!exsist) return;
 
+
 		glPushMatrix();
 		glTranslatef(pos.x, pos.y, pos.z);
-		glColor3fv(&color);
+		if (is_sea)
+			glColor4f(color.x, color.y, color.z, 0.8);
+		else
+			glColor3fv(&color);
 		glutSolidCube(size);
 		glPopMatrix();
 	}

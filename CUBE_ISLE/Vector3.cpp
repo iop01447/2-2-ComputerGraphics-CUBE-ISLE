@@ -36,6 +36,11 @@ Vector3 Vector3::flip() {
 	return Vector3{ -x, -y, -z };
 }
 
+Vector3 Vector3::color()
+{
+	return *this / 255.f;
+}
+
 // 상수의 값(cpp 파일에 작성)
 const Vector3 Vector3::ZERO(0.0f, 0.0f, 0.0f);
 const Vector3 Vector3::LEFT(-1.0f, 0.0f, 0.0f);
