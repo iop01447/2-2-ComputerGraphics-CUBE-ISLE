@@ -46,19 +46,23 @@ void CGLFramework::DrawScene()
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
+	glDisable(GL_FOG);
 
 	glutSwapBuffers();
 }
 
 void CGLFramework::Render()
 {
+
 	glFrontFace(GL_CW);
 	glEnable(GL_TEXTURE_2D);
 	skybox.draw(camera.m_pos);
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
-
+	
+	glEnable(GL_FOG);
+	fog.draw();
 	cubemap.draw();
 }
 

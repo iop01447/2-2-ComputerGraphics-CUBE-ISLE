@@ -147,6 +147,7 @@
     <ClInclude Include="CGLFramework.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="CubeMap.h" />
+    <ClInclude Include="Fog.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />

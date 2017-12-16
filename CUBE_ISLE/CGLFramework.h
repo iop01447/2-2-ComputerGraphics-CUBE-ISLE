@@ -6,6 +6,7 @@
 #include "Key.h"
 #include "CubeMap.h"
 #include "Skybox.h"
+#include "Fog.h"
 
 class CGLFramework		// c의 의미: c++ 클래스다 / 구조체랑 구분
 {
@@ -88,5 +89,8 @@ private:
 	//
 	CubeMap				cubemap;
 	Skybox				skybox;
+	
 	int					player_y_rot = 180;
+
+	Fog					fog;
 };
