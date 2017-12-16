@@ -4,6 +4,7 @@
 #include "SoundManager.h"
 #include "Zakka.h"
 #include "Key.h"
+#include "CubeMap.h"
 
 class CGLFramework		// c의 의미: c++ 클래스다 / 구조체랑 구분
 {
@@ -73,7 +74,6 @@ private:
 	int					m_fps = 16;	// 60 frame
 
 	//
-
 	Vector2				mStart;
 	Vector2				mEnd;
 	bool				drag = false;
@@ -84,7 +84,10 @@ private:
 	//  사운드 
 	CSoundManager		m_soundmgr;
 
-	//Modeling
+	//	Modeling
 	Zakka				m_zakka;
 	Key					m_key;
+
+	//
+	CubeMap				cubemap;
 };

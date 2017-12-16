@@ -46,8 +46,9 @@ void CGLFramework::DrawScene()
 
 void CGLFramework::Render()
 {
-	m_zakka.Draw();
-	m_key.Draw();
+	cubemap.draw();
+	//m_zakka.Draw();
+	//m_key.Draw();
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -81,7 +82,7 @@ void CGLFramework::Reshape(int w, int h)
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'p' || key == 'P') {
-		
+		cubemap.Init();
 	}
 	else if (key == 'o' || key == 'O') {
 	

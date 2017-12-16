@@ -19,6 +19,7 @@ public:
 		Vector3 pos = (max_ + min_) / 2;
 		glTranslatef(pos.x, pos.y, pos.z);
 		glScalef(max_.x - min_.x, max_.y - min_.y, max_.z - min_.z);
+		glColor3f(1, 0, 0);
 		if (solid)
 			glutSolidCube(1);
 		else

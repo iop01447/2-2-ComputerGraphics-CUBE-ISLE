@@ -35,7 +35,7 @@ void Key::Draw()
 	glTranslatef(0.0f, size * m_yscl, 0.0f);
 	glScalef(m_xscl, m_yscl, m_zscl);
 
-	glColor3f(1.0f, 1.0, 0.2f);
+	glColor3f(1.0f, 1.0, 0.2f); // key color
 	glutSolidTorus(size / 4, size, slices, slices);
 
 	glPushMatrix();
