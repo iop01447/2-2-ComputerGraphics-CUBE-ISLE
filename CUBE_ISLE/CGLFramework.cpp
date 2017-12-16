@@ -60,8 +60,6 @@ void CGLFramework::Render()
 	glFrontFace(GL_CCW);
 
 	cubemap.draw();
-	//m_zakka.Draw();
-	//m_key.Draw();
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -87,8 +85,6 @@ void CGLFramework::Reshape(int w, int h)
 	//	0.0, 1.0, 0.0);			// 카메라의 기울기
 
 	camera.Initialize({ 0.f, 0.f, 0.f }, 610.f, 1.f, 1000.f, 60.f);
-
-	m_key.Init();
 }
 
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
@@ -196,8 +192,9 @@ void CGLFramework::Timer(int value)
 {
 	if (is_fpv) {
 		// pos at up
-		Vector3 pos = cubemap.player.pos + Vector3{ 0,50,50 };
-		camera.SetFpvPosition(cubemap.player.pos, cubemap.player.pos);
+		Vector3 pos = cubemap.player.pos + Vector3{ 0,50,-50 };
+		Vector3 at = cubemap.player.pos + Vector3{ 0,0,50 };
+		camera.SetFpvPosition(pos, at);
 	}
 
 	// look up pos
@@ -208,7 +205,7 @@ void CGLFramework::Timer(int value)
 		m_soundmgr.Play(info.first, info.second);
 	}
 
-	m_key.Update();
+	cubemap.update();
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();

@@ -85,9 +85,6 @@ private:
 	//  »ç¿îµå 
 	CSoundManager		m_soundmgr;
 
-	//	Modeling
-	Key					m_key;
-
 	//
 	CubeMap				cubemap;
 
