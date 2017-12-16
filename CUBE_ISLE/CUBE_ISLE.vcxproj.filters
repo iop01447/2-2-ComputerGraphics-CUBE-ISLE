@@ -28,6 +28,9 @@
     <Filter Include="Modeling">
       <UniqueIdentifier>{82b185f5-36a0-4a48-8570-ef4800d3db17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{90b8eca8-c8e6-43e7-8c1b-a8247a26cfd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGLFramework.h">
@@ -63,6 +66,12 @@
     <ClInclude Include="Cube.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -88,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="Zakka.cpp">
       <Filter>Modeling</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Texture</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
