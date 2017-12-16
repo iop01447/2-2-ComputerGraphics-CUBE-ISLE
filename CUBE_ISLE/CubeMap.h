@@ -20,16 +20,22 @@ public:
 		glColor3fv(&color);
 		glutSolidCube(size);
 		glPopMatrix();
+	}
 
-		aabb.draw();
+	void draw_aabb() {
+		if (!exsist) return;
+
+			aabb.draw();
 	}
 };
 
-#define MAP_SIZE 10
+#define MAP_SIZE 20
+#define Y_SIZE 3
 
 class CubeMap {
 public:
-	Cube map[MAP_SIZE][MAP_SIZE][MAP_SIZE];
+	Cube map[MAP_SIZE][Y_SIZE][MAP_SIZE];
+	bool is_draw_aabb = false;
 	
 	CubeMap() {
 		Init();
@@ -40,13 +46,13 @@ public:
 		Vector3 key_color = { (128 + rand() % 127) / 255.f, (128 + rand() % 127) / 255.f, (128 + rand() % 127) / 255.f };
 		float map_size = HEIGHT / 2;
 		float size = map_size / MAP_SIZE;
-		Vector3 start_pos = { -map_size / 2 + size/2, -map_size / 2 + size/2, map_size / 2 - size/2 };
+		Vector3 start_pos = { -map_size / 2 + size/2, -100 -size*Y_SIZE + size/2, map_size / 2 - size/2 };
 		Vector3 pos = start_pos;
 
 		for (int i = 0; i < MAP_SIZE; i++) {	// x
-			for (int j = 0; j < MAP_SIZE; j++) {	// y
+			for (int j = 0; j < Y_SIZE; j++) {	// y
 				for (int k = 0; k < MAP_SIZE; k++) {	// z
-					map[i][j][k].exsist = rand() % 5 == 0 ? true : false;
+					map[i][j][k].exsist = rand() % 3 == 0 ? true : false;
 					map[i][j][k].color = { clamp((key_color.x * 255) - 50 - rand() % 77, 0.f, 255.f) / 255.f,
 						clamp((key_color.y * 255) - 50 - rand() % 77, 0.f, 255.f) / 255.f ,
 						clamp((key_color.z * 255) - 50 - rand() % 77, 0.f, 255.f) / 255.f };
@@ -66,11 +72,10 @@ public:
 		cout << "key À§Ä¡:" << endl;
 		for (int key = 0; key < 7; key++) {
 			int x = rand() % MAP_SIZE;
-			int y = rand() % MAP_SIZE;
+			int y = Y_SIZE - 1;
 			int z = rand() % MAP_SIZE;
 			while (map[x][y][z].color == key_color || !map[x][y][z].exsist) {
 				x = rand() % MAP_SIZE;
-				y = rand() % MAP_SIZE;
 				z = rand() % MAP_SIZE;
 			}
 			map[x][y][z].color = key_color;
@@ -87,6 +92,18 @@ public:
 			for (int j = 0; j < MAP_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
 					map[i][j][k].draw();
+				}
+			}
+		}
+
+		if (is_draw_aabb)
+			draw_aabb();
+	}
+	void draw_aabb() {
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < MAP_SIZE; j++) {
+				for (int k = 0; k < MAP_SIZE; k++) {
+					map[i][j][k].draw_aabb();
 				}
 			}
 		}
