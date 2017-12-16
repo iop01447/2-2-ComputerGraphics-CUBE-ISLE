@@ -20,6 +20,8 @@ void Zakka::Init()
 	size = 1;
 	slices = 30;
 	Init_aabb();
+	state = stand;
+	speed = size;
 }
 
 void Zakka::Init_aabb()
@@ -30,7 +32,7 @@ void Zakka::Init_aabb()
 void Zakka::Draw()
 {
 	glPushMatrix();
-
+	move();
 	glTranslatef(pos.x, pos.y, pos.z);
 	glRotatef(rot.x, 1.0f, 0.0f, 0.0f);
 	glRotatef(rot.y, 0.0f, 1.0f, 0.0f);
@@ -100,4 +102,28 @@ void Zakka::Draw()
 
 void Zakka::draw_aabb() {
 	aabb.draw();
+}
+
+void Zakka::move()
+{
+	if (state == up)
+	{
+		pos.z += speed;
+		state = stand;
+	}
+	else if (state == left)
+	{
+		pos.x -= speed;
+		state = stand;
+	}
+	else if (state == down)
+	{
+		pos.z -= speed;
+		state = stand;
+	}
+	else if (state == right)
+	{
+		pos.x += speed;
+		state = stand;
+	}
 }

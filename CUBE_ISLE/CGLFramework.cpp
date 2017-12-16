@@ -139,6 +139,14 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 		is_fpv = false;
 		camera.Initialize();
 	}
+	else if (key == 'w' || key == 'W') {	// zakka up
+	}
+	else if (key == 'a' || key == 'A') {	// zakka left
+	}
+	else if (key == 's' || key == 'S') {	// zakka down
+	}
+	else if (key == 'd' || key == 'D') {	// zakka right
+	}
 
 	glutPostRedisplay();					// 화면 재출력
 }
