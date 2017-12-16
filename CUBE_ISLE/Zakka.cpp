@@ -16,7 +16,7 @@ void Zakka::Init()
 {
 	pos = { 0,0,0 };
 	scl = { 10,10,9 };
-	rot = { 0,0,0 };
+	rot = { 0,180,0 };
 	size = 1;
 	slices = 30;
 	Init_aabb();
@@ -100,4 +100,42 @@ void Zakka::Draw()
 
 void Zakka::draw_aabb() {
 	aabb.draw();
+}
+
+void Zakka::move(Camera& camera, unsigned char key)
+{
+	Vector3 add;
+	int speed = 3;
+	add = camera.GetLookVector().normalize();
+	add.y = 0;
+	add *= speed;
+
+	switch (key)
+	{
+	case 'w':
+		add = -add;
+		pos += add;
+		break;
+	case 'a':
+		yRotate(add, 90);
+		pos += add;
+		break;
+	case 's':
+		pos += add;
+		break;
+	case 'd':
+		yRotate(add, -90);
+		pos += add;
+		break;
+	}
+
+	camera.SetFpvPosition(pos);
+}
+
+void Zakka::yRotate(Vector3& add, int angle) {
+	float theta = radian(angle);
+	float y[3][3] = { { cos(theta),0,-sin(theta) },{ 0,1,0 },{ sin(theta),0,cos(theta) } };
+	add = { y[0][0] * add.x + y[0][1] * add.y + y[0][2] * add.z,
+		y[1][0] * add.x + y[1][1] * add.y + y[1][2] * add.z ,
+		y[2][0] * add.x + y[2][1] * add.y + y[2][2] * add.z };
 }

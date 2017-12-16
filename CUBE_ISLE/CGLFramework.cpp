@@ -129,11 +129,15 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	}
 	else if (key == '1') {
 		is_fpv = true;
-		camera.FpvRotateInit();
+		cubemap.player.rot.y = player_y_rot;
 	}
 	else if (key == '3') {
 		is_fpv = false;
 		camera.Initialize();
+	}
+	else if (key == 'w' || key == 'a' || key == 's' || key == 'd') {
+		if (!is_fpv) return;
+		cubemap.player.move(camera, key);
 	}
 
 	glutPostRedisplay();					// 화면 재출력
@@ -179,8 +183,9 @@ void CGLFramework::Motion(int x, int y)
 		mStart = { (float)x,(float)y };
 
 		// player 회전
+		player_y_rot = (player_y_rot + yRot) % 360;
 		if (!is_fpv) return;
-		cubemap.player.rot.y = (int)(cubemap.player.rot.y + yRot) % 360;
+		cubemap.player.rot.y = player_y_rot;
 	}
 }
 

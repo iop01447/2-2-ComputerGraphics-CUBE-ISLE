@@ -88,8 +88,9 @@ private:
 
 	//
 	CubeMap				cubemap;
-
 	Skybox				skybox;
+	
+	int					player_y_rot = 180;
 
 	Fog					fog;
 };
