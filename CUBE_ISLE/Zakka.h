@@ -15,20 +15,9 @@ public:
 	int slices;
 	Aabb aabb;
 
-	enum State {
-		  stand
-		, up
-		, left
-		, down
-		, right
-	};
-	State state;
-	float speed;
-
 	void Init();
 	void Init_aabb();
 	void Draw();
 	void draw_aabb();
-	void move();
 };
 
