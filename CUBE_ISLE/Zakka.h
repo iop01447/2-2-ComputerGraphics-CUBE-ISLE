@@ -14,7 +14,7 @@ public:
 	float size;
 	int slices;
 	Aabb aabb;
-	bool jump = false;
+	bool jump_active = false;
 
 	void Init();
 	void Init_aabb();

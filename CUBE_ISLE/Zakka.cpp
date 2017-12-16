@@ -132,7 +132,8 @@ void Zakka::move(Camera& camera, unsigned char key)
 	}
 	key = 0;
 
-	if(jump)
+	if (jump_active)
+		jump();
 
 	Init_aabb();
 	camera.SetFpvPosition(pos);
