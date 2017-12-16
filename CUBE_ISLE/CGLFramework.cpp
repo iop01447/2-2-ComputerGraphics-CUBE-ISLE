@@ -38,7 +38,6 @@ void CGLFramework::DrawScene()
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glFrontFace(GL_CW);
 
 	glLoadIdentity();
 
@@ -53,10 +52,12 @@ void CGLFramework::DrawScene()
 
 void CGLFramework::Render()
 {
+	glFrontFace(GL_CW);
 	glEnable(GL_TEXTURE_2D);
 	skybox.draw(camera.m_pos);
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
+	glFrontFace(GL_CCW);
 
 	cubemap.draw();
 	//m_zakka.Draw();
