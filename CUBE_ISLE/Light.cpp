@@ -13,6 +13,8 @@ Light::~Light()
 
 void Light::light_global()
 {
+	glPushMatrix();
+	glRotatef(global_rot - 180, 0.0f, 0.0f, 1.0f);
 	glEnable(GL_LIGHTING);
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, AmbientLight);
 	glEnable(GL_COLOR_MATERIAL);
@@ -25,11 +27,6 @@ void Light::light_global()
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, DiffuseLight);
 	glLightfv(GL_LIGHT0, GL_POSITION, Poslight);
 	glEnable(GL_LIGHT0);
-
-	glPushMatrix();
-		glTranslatef(Poslight[0], Poslight[1], Poslight[2]);
-		glColor3f(1.0f, 1.0f, 0.8f);
-		glutSolidSphere(20, 12, 12);
 	glPopMatrix();
 }
 
@@ -39,10 +36,24 @@ void Light::init(Vector3 key_pos, int num)
 	key_Poslight[num][1] = key_pos.y + 6;
 	key_Poslight[num][2] = key_pos.z;
 	key_Poslight[num][3] = 1.0f;
+
+	r = g = b = 0.1f;
+	global_rot = 0;
+	global_rot_cnt = 0;
+	global_state = false;
+	light_rot = 0;
 }
 
 void Light::light_on()
 {
+	//global light
+	glPushMatrix();
+	glRotatef(global_rot - 180, 0.0f, 0.0f, 1.0f);
+	glTranslatef(Poslight[0], Poslight[1], Poslight[2]);
+	glColor3f(r, g, b);
+	glutSolidSphere(20, 12, 12);
+	glPopMatrix();
+
 	glDisable(GL_CULL_FACE);
 	//light 1
 	glPushMatrix();
@@ -57,7 +68,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[0][0], key_Poslight[0][1], key_Poslight[0][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -75,7 +86,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[1][0], key_Poslight[1][1], key_Poslight[1][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -93,7 +104,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[2][0], key_Poslight[2][1], key_Poslight[2][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -111,7 +122,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[3][0], key_Poslight[3][1], key_Poslight[3][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -129,7 +140,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[4][0], key_Poslight[4][1], key_Poslight[4][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -147,7 +158,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[5][0], key_Poslight[5][1], key_Poslight[5][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -165,7 +176,7 @@ void Light::light_on()
 
 	glTranslatef(key_Poslight[6][0], key_Poslight[6][1], key_Poslight[6][2]);
 	glColor3fv(key_AmbientLight);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
 	glRotatef(90, 1.0f, 0.0f, 0.0f);
 	glutSolidCone(key_light_size, key_light_size, 4, 4);
 	glPopMatrix();
@@ -188,5 +199,41 @@ void Light::light_off()
 
 void Light::update()
 {
-	yrot = (yrot + 2) % 360;
+	light_rot = (light_rot + 2) % 360;
+	global_rot_cnt++;
+	if (global_rot_cnt > 5)
+	{
+		global_rot = (global_rot + 1) % 360;
+		if (global_rot == 180 || global_rot == 0)
+		{			
+			global_state = !global_state;
+		}
+
+		if (!global_state)
+		{
+			if (r < 0.8f)
+			{
+				r += 2.0f / 360.0f;
+				g += 2.0f / 360.0f;
+				b += 2.0f / 360.0f;
+				AmbientLight[0] = r;
+				AmbientLight[1] = g;
+				AmbientLight[2] = b;
+			}
+		}
+		else if (global_state)
+		{
+			if (r > 0.2f)
+			{
+				r -= 2.0f / 360.0f;
+				g -= 2.0f / 360.0f;
+				b -= 2.0f / 360.0f;
+				AmbientLight[0] = r;
+				AmbientLight[1] = g;
+				AmbientLight[2] = b;
+			}
+		}
+
+		global_rot_cnt = 0;
+	}
 }

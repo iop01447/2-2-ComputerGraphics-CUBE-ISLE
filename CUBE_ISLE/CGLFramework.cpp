@@ -57,12 +57,13 @@ void CGLFramework::Render()
 {
 	glFrontFace(GL_CW);
 	glEnable(GL_TEXTURE_2D);
+	light.light_global();
 	skybox.draw(camera.m_pos);
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
-	light.light_global();
-	glClear(GL_DEPTH_BUFFER_BIT);
+	//light.light_global();
+	//glClear(GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_FOG);
 	fog.draw();
