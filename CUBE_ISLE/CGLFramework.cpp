@@ -22,6 +22,8 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 //	m_soundmgr.AddSound("Click", "Sound/Equip.wav", 700, 1000); // cube 크기 기준으로
 
 	skybox.init();
+	for(int i = 0; i < 7; ++i)
+		light.init(cubemap.key[i].pos, i);
 }
 
 void CGLFramework::Run()
@@ -47,9 +49,7 @@ void CGLFramework::DrawScene()
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
 	glDisable(GL_FOG);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_COLOR_MATERIAL);
-	glDisable(GL_LIGHT0);
+	light.light_off();
 	glutSwapBuffers();
 }
 
@@ -62,10 +62,12 @@ void CGLFramework::Render()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
 	light.light_global();
-	
+	glClear(GL_DEPTH_BUFFER_BIT);
+
 	glEnable(GL_FOG);
 	fog.draw();
 	cubemap.draw();
+	light.light_on();
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -97,6 +99,8 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'p' || key == 'P') {
 		cubemap.Init();
+		for (int i = 0; i < 7; ++i)
+			light.init(cubemap.key[i].pos, i);
 	}
 	else if (key == 'g' || key == 'G') {
 		cubemap.is_draw_aabb = !cubemap.is_draw_aabb;
@@ -210,6 +214,7 @@ void CGLFramework::Timer(int value)
 	}
 
 	cubemap.update(camera, is_fpv);
+	light.update();
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();
