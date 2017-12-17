@@ -90,10 +90,10 @@ private:
 	//
 	CubeMap				cubemap;
 	Skybox				skybox;
-	
-	int					player_y_rot = 180;
-
 	Fog					fog;
-
 	Light				light;
+
+	int					player_y_rot = 180;
+	int					current_time;
+	int					frame_time;
 };
