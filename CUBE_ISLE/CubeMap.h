@@ -47,6 +47,7 @@ public:
 					map[i][j][k].pos = pos;
 					map[i][j][k].size = size;
 					map[i][j][k].aabb = { pos - size / 2.f, pos + size / 2.f };
+					map[i][j][k].is_sea = false;
 					// sea
 					if (j == 0 && !map[i][j][k].exsist) {
 						map[i][j][k].exsist = true;
