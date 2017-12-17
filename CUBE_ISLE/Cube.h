@@ -31,4 +31,8 @@ public:
 
 		aabb.draw();
 	}
+
+	void broken_ani() {
+
+	}
 };

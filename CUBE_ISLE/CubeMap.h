@@ -14,6 +14,7 @@ public:
 	bool is_draw_aabb = false;
 	Zakka player;
 	Key key[7];
+	bool is_unbeatable = false;
 
 	CubeMap() {
 		Init();
@@ -151,6 +152,10 @@ public:
 					if (!map[i][j][k].exsist) continue;
 					if (AabbAabbIntersection(player.aabb, map[i][j][k].aabb)) {
 						if (map[i][j][k].is_sea) {
+							if (is_unbeatable) {
+								cout << "사망" << endl;
+								return true;
+							}
 							HWND hwnd = GetForegroundWindow();
 							if (MessageBox(hwnd,
 								TEXT("새로운 게임을 플레이하시겠습니까?"),

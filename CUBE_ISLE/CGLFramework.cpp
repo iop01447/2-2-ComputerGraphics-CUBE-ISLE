@@ -145,6 +145,11 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 		if (cubemap.player.jump_active) cubemap.player.jump_key = key;
 		cubemap.player.key = cubemap.player.back_key = key;
 	}
+	else if (key == 'u') {
+		cubemap.is_unbeatable = !cubemap.is_unbeatable;
+		if (cubemap.is_unbeatable) cout << "무적모드" << endl;
+		else cout << "무적모드 해제" << endl;
+	}
 
 	glutPostRedisplay();					// 화면 재출력
 }
