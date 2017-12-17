@@ -17,10 +17,9 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 	glutInitWindowPosition(x, y);	// 윈도우 위치지정
 	glutCreateWindow(caption);
 
-	auto pCubeIsle = new CubeIsle{};								
-
-	m_Scenes[m_nCurrentScene++] = pCubeIsle;
-	m_pCurrentScene = pCubeIsle;
+	auto cubeisle = new CubeIsle{};
+	cubeisle->Initialize(this);
+	AddScene(cubeisle);
 
 	current_time = glutGet(GLUT_ELAPSED_TIME);
 }
@@ -77,6 +76,12 @@ void CGLFramework::Timer(int value)
 	
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();
+}
+
+void CGLFramework::AddScene(CScene* scene)
+{
+	m_Scenes[m_nCurrentScene++] = scene;
+	m_pCurrentScene = scene;
 }
 
 void CGLFramework::PopScene()

@@ -8,7 +8,6 @@
 #include "Skybox.h"
 #include "Fog.h"
 #include "Light.h"
-#include "SoundManager.h"
 #include "Skybox_star.h"
 
 class CubeIsle :

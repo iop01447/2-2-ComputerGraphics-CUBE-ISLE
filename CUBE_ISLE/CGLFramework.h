@@ -32,6 +32,7 @@ public:
 
 	void Timer(int value);
 
+	void AddScene(CScene* scene);
 	void PopScene();
 
 	using DrawFunc = void(*)();

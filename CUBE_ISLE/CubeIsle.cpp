@@ -1,5 +1,5 @@
 #include "CubeIsle.h"
-
+#include "CGLFramework.h"
 
 
 CubeIsle::CubeIsle()
@@ -12,7 +12,6 @@ CubeIsle::CubeIsle()
 
 	skybox.init();
 }
-
 
 CubeIsle::~CubeIsle()
 {

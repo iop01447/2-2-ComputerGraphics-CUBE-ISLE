@@ -21,6 +21,7 @@ public:
 	int player_cube[3]; // player가 위치한 큐브의 index
 	int player_cube_total_frame_time = 0; // player가 똑같은 큐브 위에 얼마나 있었나
 	bool warning = false;
+//	bool is_game_clear = false;
 
 	CubeMap() {
 		Init();
@@ -230,6 +231,7 @@ public:
 					clamp((key_color.y * 255) - 50 - rand() % 77, 0.f, 255.f) ,
 					clamp((key_color.z * 255) - 50 - rand() % 77, 0.f, 255.f) }.color();
 				if (player.get_key_num == 7) {
+				//	is_game_clear = true;
 					HWND hwnd = GetForegroundWindow();
 					if (MessageBox(hwnd,
 						TEXT("Thank You ! \n새로운 게임을 플레이하시겠습니까?"),
