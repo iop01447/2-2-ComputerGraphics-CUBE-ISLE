@@ -16,7 +16,7 @@ void Light::init()
 {
 	r = 0.2f;
 	g = 0.1f;
-	b = 0.0f;
+	b = 0.1f;
 	global_rot = 0;
 	global_rot_cnt = 0;
 	global_state = false;
@@ -228,7 +228,7 @@ void Light::update()
 {
 	light_rot = (light_rot + 2) % 360;
 	global_rot_cnt++;
-	if (global_rot_cnt > 5)
+	if (global_rot_cnt > 0)
 	{
 		global_rot = (global_rot + 1) % 360;
 		if (global_rot == 180 || global_rot == 0)
@@ -238,7 +238,7 @@ void Light::update()
 
 		if (!global_state)
 		{
-			if (g < 0.8f)
+			if (r < 0.8f)
 			{
 				r += 4.0f / 360.0f;
 				g += 2.0f / 360.0f;
