@@ -8,6 +8,7 @@
 #include "Skybox.h"
 #include "Fog.h"
 #include "Light.h"
+#include "Skybox_star.h"
 
 class CGLFramework		// c의 의미: c++ 클래스다 / 구조체랑 구분
 {
@@ -96,4 +97,6 @@ private:
 	Fog					fog;
 
 	Light				light;
+
+	Star				star;
 };

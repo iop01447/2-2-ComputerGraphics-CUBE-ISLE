@@ -60,7 +60,11 @@ void CGLFramework::Render()
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
+	glDisable(GL_LIGHTING);
+	star.draw(camera.m_pos, light.global_rot);
+	glClear(GL_DEPTH_BUFFER_BIT);
 
+	glEnable(GL_LIGHTING);
 	light.light_on();
 	glEnable(GL_FOG);
 	fog.draw();
@@ -229,6 +233,8 @@ void CGLFramework::Timer(int value)
 	}
 	light.update();
 	fog.update(light.r, light.g, light.b);
+	if (star.exist)
+		star.update();
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();
