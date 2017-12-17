@@ -71,6 +71,7 @@ public:
 			if (y == 1) map[x][y + 1][z].exsist = false;
 			key[i].pos = map[x][y][z].pos + Vector3{ 0, size, 0 };
 			key[i].Init_aabb();
+			key[i].exsist = true;
 			cout << x << " " << y << " " << z << endl;
 		}
 		cout << endl;
@@ -78,6 +79,7 @@ public:
 		// player init
 		player.pos = map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].pos + Vector3{0, size / 2 + player.scl.y, 0};
 		player.Init_aabb();
+		player.get_key_num = 0;
 		map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].exsist = true;
 	}
 

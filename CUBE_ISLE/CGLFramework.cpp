@@ -47,9 +47,7 @@ void CGLFramework::DrawScene()
 	glDisable(GL_CULL_FACE);
 	glDisable(GL_BLEND);
 	glDisable(GL_FOG);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_COLOR_MATERIAL);
-	glDisable(GL_LIGHT0);
+	light.light_off();
 	glutSwapBuffers();
 }
 
@@ -57,15 +55,16 @@ void CGLFramework::Render()
 {
 	glFrontFace(GL_CW);
 	glEnable(GL_TEXTURE_2D);
+	light.light_global();
 	skybox.draw(camera.m_pos);
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
-	light.light_global();
-	
+
 	glEnable(GL_FOG);
 	fog.draw();
 	cubemap.draw();
+	light.light_on();
 }
 
 void CGLFramework::Reshape(int w, int h)
@@ -97,6 +96,8 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
 	if (key == 'p' || key == 'P') {
 		cubemap.Init();
+		for (int i = 0; i < 7; ++i)
+			light.pos_init(cubemap.key[i].pos, i);
 	}
 	else if (key == 'g' || key == 'G') {
 		cubemap.is_draw_aabb = !cubemap.is_draw_aabb;
@@ -216,6 +217,17 @@ void CGLFramework::Timer(int value)
 	}
 
 	cubemap.update(camera, is_fpv);
+	for (int i = 0; i < 7; ++i)
+	{
+		if (cubemap.key[i].exsist == false)
+			light.exist[i] = false;
+		else if (cubemap.key[i].exsist == true)
+		{
+			light.exist[i] = true;
+			light.pos_init(cubemap.key[i].pos, i);
+		}
+	}
+	light.update();
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();
