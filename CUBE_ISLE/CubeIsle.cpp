@@ -98,7 +98,7 @@ void CubeIsle::Keyboard(unsigned char key, int x, int y)
 	else if (key == 'Y') {
 		camera.Rotate(radian(-10), 0);
 	}
-	else if (key == ' ') { // 제어점 추가
+	else if (key == ' ') {
 		cubemap.player.jump_active = true;
 	}
 	else if (key == '1') {
