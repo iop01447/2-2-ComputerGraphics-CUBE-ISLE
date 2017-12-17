@@ -20,6 +20,7 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 	m_soundmgr.AddSound("BGM", "Sound/Refunct_Game_Ost.mp3", SoundType::Stream);
 	PushPlayQueue("BGM", Vector3(0, 0, 0));
 	m_soundmgr.AddSound("Warning", "Sound/Bomb_Timer_Sound_Effect.mp3", 700, 1000); // cube 크기 기준으로
+	m_soundmgr.AddSound("GetKey", "Sound/Super Mario Bros - Coin Sound Effect.mp3", 700, 1000); // cube 크기 기준으로
 
 	skybox.init();
 

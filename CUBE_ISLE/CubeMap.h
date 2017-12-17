@@ -148,13 +148,14 @@ public:
 		}
 
 		// 큐브 부시기
-		player_cube_total_frame_time += frame_time;
+		if(is_fpv || warning)
+			player_cube_total_frame_time += frame_time;
 		if (!warning && player_cube_total_frame_time > 1000 * 2) {
 			warning = true;
 			PushPlayQueue("Warning", map[player_cube[0]][player_cube[1]][player_cube[2]].pos);
 			player_cube_total_frame_time = 0;
 		}
-		if (warning && player_cube_total_frame_time > 1000 * 6.7) {
+		if (warning && player_cube_total_frame_time > 1000 * 2.5) {
 			warning = false;
 			int i = player_cube[0];
 			int j = player_cube[1];
@@ -222,6 +223,7 @@ public:
 			if (!key[i].exsist) continue;
 			if (AabbAabbIntersection(player.aabb, key[i].aabb)) {
 				player.get_key_num++;
+				PushPlayQueue("GetKey", key[i].pos);
 				key[i].exsist = false;
 				map[key_cube_index[i][0]][key_cube_index[i][1]][key_cube_index[i][2]].color 
 					= Vector3{ clamp((key_color.x * 255) - 50 - rand() % 77, 0.f, 255.f) ,
