@@ -14,7 +14,9 @@ public:
 	bool is_draw_aabb = false;
 	Zakka player;
 	Key key[7];
+	int key_cube_index[7][3];
 	bool is_unbeatable = false;
+	Vector3 key_color;
 
 	CubeMap() {
 		Init();
@@ -23,7 +25,7 @@ public:
 
 	void Init() {
 		// cubemap init //
-		Vector3 key_color = Vector3{ 128.f + rand() % 127, 128.f + rand() % 127, 128.f + rand() % 127 }.color();
+		key_color = Vector3{ 128.f + rand() % 127, 128.f + rand() % 127, 128.f + rand() % 127 }.color();
 		float map_size = HEIGHT / 2;
 		float size = map_size / MAP_SIZE;
 		Vector3 start_pos = { -map_size / 2 + size / 2, -size*Y_SIZE + size / 2, map_size / 2 - size / 2 };
@@ -68,6 +70,9 @@ public:
 				z = rand() % MAP_SIZE;
 			}
 			map[x][y][z].color = key_color;
+			key_cube_index[i][0] = x;
+			key_cube_index[i][1] = y;
+			key_cube_index[i][2] = z;
 			if (y == 1) map[x][y + 1][z].exsist = false;
 			key[i].pos = map[x][y][z].pos + Vector3{ 0, size, 0 };
 			key[i].Init_aabb();
@@ -171,6 +176,10 @@ public:
 			if (AabbAabbIntersection(player.aabb, key[i].aabb)) {
 				player.get_key_num++;
 				key[i].exsist = false;
+				map[key_cube_index[i][0]][key_cube_index[i][1]][key_cube_index[i][2]].color 
+					= Vector3{ clamp((key_color.x * 255) - 50 - rand() % 77, 0.f, 255.f) ,
+					clamp((key_color.y * 255) - 50 - rand() % 77, 0.f, 255.f) ,
+					clamp((key_color.z * 255) - 50 - rand() % 77, 0.f, 255.f) }.color();
 				if (player.get_key_num == 7) {
 					HWND hwnd = GetForegroundWindow();
 					if (MessageBox(hwnd,
