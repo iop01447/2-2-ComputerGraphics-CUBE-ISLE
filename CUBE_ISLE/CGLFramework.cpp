@@ -228,6 +228,7 @@ void CGLFramework::Timer(int value)
 		}
 	}
 	light.update();
+	fog.update(light.r, light.g, light.b);
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();

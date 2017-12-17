@@ -228,7 +228,7 @@ void Light::update()
 {
 	light_rot = (light_rot + 2) % 360;
 	global_rot_cnt++;
-	if (global_rot_cnt > 0)
+	if (global_rot_cnt > 5)
 	{
 		global_rot = (global_rot + 1) % 360;
 		if (global_rot == 180)
