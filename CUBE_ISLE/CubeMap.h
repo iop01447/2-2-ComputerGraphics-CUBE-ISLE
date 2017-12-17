@@ -142,6 +142,16 @@ public:
 			player_dead();
 		}
 
+		// 큐브 애니
+		for (int i = 0; i < MAP_SIZE; i++) {
+			for (int j = 0; j < Y_SIZE; j++) {
+				for (int k = 0; k < MAP_SIZE; k++) {
+					if (!map[i][j][k].exsist) continue;
+					map[i][j][k].update();
+				}
+			}
+		}
+
 		// 이동
 		if (!is_fpv) return;
 		player.move(camera);
@@ -159,6 +169,8 @@ public:
 				for (int k = 0; k < MAP_SIZE; k++) {
 					if (!map[i][j][k].exsist) continue;
 					if (AabbAabbIntersection(player.aabb, map[i][j][k].aabb)) {
+						if(!map[i][j][k].ani)
+							map[i][j][k].ani_initialize();
 						if (map[i][j][k].is_sea) {
 							player_dead();
 						}
