@@ -14,7 +14,9 @@ Light::~Light()
 
 void Light::init()
 {
-	r = g = b = 0.3f;
+	r = 0.2f;
+	g = 0.1f;
+	b = 0.0f;
 	global_rot = 0;
 	global_rot_cnt = 0;
 	global_state = false;
@@ -63,146 +65,146 @@ void Light::light_on()
 	glEnable(GL_NORMALIZE);
 	glNormal3f(0.0f, 1.0f, 0.0f);
 	glDisable(GL_CULL_FACE);
-	//light 1
-	if (exist[0] == true)
-	{
-		glPushMatrix();
-		glLightfv(GL_LIGHT1, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT1, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT1, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT1, GL_POSITION, key_Poslight[0]);
-		glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT1);
-
-		glTranslatef(key_Poslight[0][0], key_Poslight[0][1], key_Poslight[0][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
-	if (exist[1] == true)
-	{
-		//light 2
-		glPushMatrix();
-		glLightfv(GL_LIGHT2, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT2, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT2, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT2, GL_POSITION, key_Poslight[1]);
-		glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT2);
-
-		glTranslatef(key_Poslight[1][0], key_Poslight[1][1], key_Poslight[1][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
-	if (exist[2] == true)
-	{
-		//light 3
-		glPushMatrix();
-		glLightfv(GL_LIGHT3, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT3, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT3, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT3, GL_POSITION, key_Poslight[2]);
-		glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT3);
-
-		glTranslatef(key_Poslight[2][0], key_Poslight[2][1], key_Poslight[2][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
-	if (exist[3] == true)
-	{
-		//light 4
-		glPushMatrix();
-		glLightfv(GL_LIGHT4, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT4, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT4, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT4, GL_POSITION, key_Poslight[3]);
-		glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT4);
-
-		glTranslatef(key_Poslight[3][0], key_Poslight[3][1], key_Poslight[3][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
-	if (exist[4] == true)
-	{
-		// light 5
-		glPushMatrix();
-		glLightfv(GL_LIGHT5, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT5, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT5, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT5, GL_POSITION, key_Poslight[4]);
-		glLightfv(GL_LIGHT5, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT5, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT5);
-
-		glTranslatef(key_Poslight[4][0], key_Poslight[4][1], key_Poslight[4][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
-	if (exist[5] == true)
-	{
-		// light 6
-		glPushMatrix();
-		glLightfv(GL_LIGHT6, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT6, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT6, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT6, GL_POSITION, key_Poslight[5]);
-		glLightfv(GL_LIGHT6, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT6, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT6);
-
-		glTranslatef(key_Poslight[5][0], key_Poslight[5][1], key_Poslight[5][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
-	if (exist[6] == true)
-	{
-		//light 7
-		glPushMatrix();
-		glLightfv(GL_LIGHT7, GL_AMBIENT, key_AmbientLight);
-		glLightfv(GL_LIGHT7, GL_DIFFUSE, key_DiffuseLight);
-		glLightfv(GL_LIGHT7, GL_SPECULAR, key_SpecularLight);
-		glLightfv(GL_LIGHT7, GL_POSITION, key_Poslight[6]);
-		glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, direction);
-		glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, cutoff);
-		glLightf(GL_LIGHT7, GL_SPOT_EXPONENT, exponent);
-		glEnable(GL_LIGHT7);
-
-		glTranslatef(key_Poslight[6][0], key_Poslight[6][1], key_Poslight[6][2]);
-		glColor4fv(key_AmbientLight);
-		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
-		glRotatef(90, 1.0f, 0.0f, 0.0f);
-		glutSolidCone(key_light_size, key_light_size, 4, 4);
-		glPopMatrix();
-	}
+	////light 1
+	//if (exist[0] == true)
+	//{
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT1, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT1, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT1, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT1, GL_POSITION, key_Poslight[0]);
+	//	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT1);
+	//
+	//	glTranslatef(key_Poslight[0][0], key_Poslight[0][1], key_Poslight[0][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
+	//if (exist[1] == true)
+	//{
+	//	//light 2
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT2, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT2, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT2, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT2, GL_POSITION, key_Poslight[1]);
+	//	glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT2);
+	//
+	//	glTranslatef(key_Poslight[1][0], key_Poslight[1][1], key_Poslight[1][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
+	//if (exist[2] == true)
+	//{
+	//	//light 3
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT3, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT3, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT3, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT3, GL_POSITION, key_Poslight[2]);
+	//	glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT3);
+	//
+	//	glTranslatef(key_Poslight[2][0], key_Poslight[2][1], key_Poslight[2][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
+	//if (exist[3] == true)
+	//{
+	//	//light 4
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT4, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT4, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT4, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT4, GL_POSITION, key_Poslight[3]);
+	//	glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT4);
+	//
+	//	glTranslatef(key_Poslight[3][0], key_Poslight[3][1], key_Poslight[3][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
+	//if (exist[4] == true)
+	//{
+	//	// light 5
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT5, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT5, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT5, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT5, GL_POSITION, key_Poslight[4]);
+	//	glLightfv(GL_LIGHT5, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT5, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT5);
+	//
+	//	glTranslatef(key_Poslight[4][0], key_Poslight[4][1], key_Poslight[4][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
+	//if (exist[5] == true)
+	//{
+	//	// light 6
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT6, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT6, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT6, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT6, GL_POSITION, key_Poslight[5]);
+	//	glLightfv(GL_LIGHT6, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT6, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT6);
+	//
+	//	glTranslatef(key_Poslight[5][0], key_Poslight[5][1], key_Poslight[5][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
+	//if (exist[6] == true)
+	//{
+	//	//light 7
+	//	glPushMatrix();
+	//	glLightfv(GL_LIGHT7, GL_AMBIENT, key_AmbientLight);
+	//	glLightfv(GL_LIGHT7, GL_DIFFUSE, key_DiffuseLight);
+	//	glLightfv(GL_LIGHT7, GL_SPECULAR, key_SpecularLight);
+	//	glLightfv(GL_LIGHT7, GL_POSITION, key_Poslight[6]);
+	//	glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, direction);
+	//	glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, cutoff);
+	//	glLightf(GL_LIGHT7, GL_SPOT_EXPONENT, exponent);
+	//	glEnable(GL_LIGHT7);
+	//
+	//	glTranslatef(key_Poslight[6][0], key_Poslight[6][1], key_Poslight[6][2]);
+	//	glColor4fv(key_AmbientLight);
+	//	glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
+	//	glRotatef(90, 1.0f, 0.0f, 0.0f);
+	//	glutSolidCone(key_light_size, key_light_size, 4, 4);
+	//	glPopMatrix();
+	//}
 	glDisable(GL_NORMALIZE);
 	glEnable(GL_CULL_FACE);
 }
@@ -235,11 +237,11 @@ void Light::update()
 
 		if (!global_state)
 		{
-			if (r < 0.8f)
+			if (g < 0.8f)
 			{
-				r += 2.0f / 360.0f;
+				r += 4.0f / 360.0f;
 				g += 2.0f / 360.0f;
-				b += 2.0f / 360.0f;
+				b += 1.0f / 360.0f;
 				AmbientLight[0] = r;
 				AmbientLight[1] = g;
 				AmbientLight[2] = b;
@@ -247,11 +249,11 @@ void Light::update()
 		}
 		else if (global_state)
 		{
-			if (r > 0.3f)
+			if (r > 0.2f)
 			{
-				r -= 2.0f / 360.0f;
+				r -= 4.0f / 360.0f;
 				g -= 2.0f / 360.0f;
-				b -= 2.0f / 360.0f;
+				b -= 1.0f / 360.0f;
 				AmbientLight[0] = r;
 				AmbientLight[1] = g;
 				AmbientLight[2] = b;
