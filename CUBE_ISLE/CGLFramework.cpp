@@ -22,8 +22,6 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 //	m_soundmgr.AddSound("Click", "Sound/Equip.wav", 700, 1000); // cube 크기 기준으로
 
 	skybox.init();
-	for(int i = 0; i < 7; ++i)
-		light.init(cubemap.key[i].pos, i);
 }
 
 void CGLFramework::Run()
@@ -62,8 +60,6 @@ void CGLFramework::Render()
 	glDisable(GL_TEXTURE_2D);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
-	//light.light_global();
-	//glClear(GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_FOG);
 	fog.draw();
@@ -101,7 +97,7 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	if (key == 'p' || key == 'P') {
 		cubemap.Init();
 		for (int i = 0; i < 7; ++i)
-			light.init(cubemap.key[i].pos, i);
+			light.pos_init(cubemap.key[i].pos, i);
 	}
 	else if (key == 'g' || key == 'G') {
 		cubemap.is_draw_aabb = !cubemap.is_draw_aabb;
@@ -216,6 +212,16 @@ void CGLFramework::Timer(int value)
 	}
 
 	cubemap.update(camera, is_fpv);
+	for (int i = 0; i < 7; ++i)
+	{
+		if (cubemap.key[i].exsist == false)
+			light.exist[i] = false;
+		else if (cubemap.key[i].exsist == true)
+		{
+			light.exist[i] = true;
+			light.pos_init(cubemap.key[i].pos, i);
+		}
+	}
 	light.update();
 
 	glutTimerFunc(m_fps, fnTimer, 1);

@@ -70,6 +70,7 @@ public:
 			if (y == 1) map[x][y + 1][z].exsist = false;
 			key[i].pos = map[x][y][z].pos + Vector3{ 0, size, 0 };
 			key[i].Init_aabb();
+			key[i].exsist = true;
 			cout << x << " " << y << " " << z << endl;
 		}
 		cout << endl;

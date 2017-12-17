@@ -17,9 +17,10 @@ public:
 	GLint global_rot_cnt = 0;
 	GLboolean global_state = false;
 
+	void init();
 	void light_global();
 
-	GLfloat key_AmbientLight[4] = { 0.8f, 0.8f, 0.2f, 1.0f };
+	GLfloat key_AmbientLight[4] = { 0.6f, 0.8f, 0.2f, 0.5f };
 	GLfloat key_DiffuseLight[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	GLfloat key_SpecularLight[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	GLfloat key_Poslight[7][4];
@@ -28,8 +29,9 @@ public:
 	float exponent = 0.0f;
 	float key_light_size = 2;
 	GLint light_rot = 0;
+	bool exist[7] = { true };
 
-	void init(Vector3 key_pos, int num);
+	void pos_init(Vector3 key_pos, int num);
 	void light_on();
 	void light_off();
 	void update();
