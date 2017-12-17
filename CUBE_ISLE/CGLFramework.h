@@ -100,8 +100,6 @@ private:
 	//
 	CubeMap				cubemap;
 	Skybox				skybox;
-	Fog					fog;
-	Light				light;
 
 	int					player_y_rot = 180;
 	int					current_time;
