@@ -133,6 +133,9 @@ public:
 		player.update();
 		if (collide_check_player_map())
 			player.update_back();
+		if (player.pos.y < -100) {
+			player_dead();
+		}
 
 		// 이동
 		if (!is_fpv) return;
@@ -152,19 +155,7 @@ public:
 					if (!map[i][j][k].exsist) continue;
 					if (AabbAabbIntersection(player.aabb, map[i][j][k].aabb)) {
 						if (map[i][j][k].is_sea) {
-							if (is_unbeatable) {
-								cout << "사망" << endl;
-								return true;
-							}
-							HWND hwnd = GetForegroundWindow();
-							if (MessageBox(hwnd,
-								TEXT("새로운 게임을 플레이하시겠습니까?"),
-								TEXT("사망"), MB_YESNO) == IDNO) {
-								exit(0);
-							}
-							else {
-								Init();
-							}
+							player_dead();
 						}
 						return true;
 					}
@@ -195,5 +186,21 @@ public:
 			}
 		}
 		return false;
+	}
+
+	void player_dead() {
+		if (is_unbeatable) {
+			cout << "사망" << endl;
+			return;
+		}
+		HWND hwnd = GetForegroundWindow();
+		if (MessageBox(hwnd,
+			TEXT("새로운 게임을 플레이하시겠습니까?"),
+			TEXT("사망"), MB_YESNO) == IDNO) {
+			exit(0);
+		}
+		else {
+			Init();
+		}
 	}
 };
