@@ -238,7 +238,7 @@ void Light::update()
 		}
 		else if (global_rot == 0)
 		{
-			r = g = b = 0.1f;
+			r = g = b = 0.15f;
 			global_state = !global_state;
 		}
 
