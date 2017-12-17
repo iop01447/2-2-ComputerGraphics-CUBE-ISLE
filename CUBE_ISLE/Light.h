@@ -20,13 +20,13 @@ public:
 	void init();
 	void light_global();
 
-	GLfloat key_AmbientLight[4] = { 0.6f, 0.8f, 0.2f, 0.5f };
-	GLfloat key_DiffuseLight[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	GLfloat key_AmbientLight[4] = { 0.6f, 0.6f, 0.6f, 0.4f };
+	GLfloat key_DiffuseLight[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
 	GLfloat key_SpecularLight[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	GLfloat key_Poslight[7][4];
 	float direction[3] = { 0,0,-1 };
-	float cutoff = 180.0f;
-	float exponent = 0.0f;
+	float cutoff = 30;
+	float exponent = -10;
 	float key_light_size = 2;
 	GLint light_rot = 0;
 	bool exist[7] = { true };

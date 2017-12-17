@@ -78,6 +78,7 @@ public:
 		// player init
 		player.pos = map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].pos + Vector3{0, size / 2 + player.scl.y, 0};
 		player.Init_aabb();
+		player.get_key_num = 0;
 		map[MAP_SIZE / 2][Y_SIZE - 1][MAP_SIZE / 2].exsist = true;
 	}
 

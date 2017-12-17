@@ -47,7 +47,7 @@ void Light::pos_init(Vector3 key_pos, int num)
 	key_Poslight[num][0] = key_pos.x;
 	key_Poslight[num][1] = key_pos.y + 6;
 	key_Poslight[num][2] = key_pos.z;
-	key_Poslight[num][3] = 0.5f;
+	key_Poslight[num][3] = 1.0f;
 }
 
 void Light::light_on()
@@ -69,9 +69,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT1, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT1, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT1, GL_POSITION, key_Poslight[0]);
-		//glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT1);
 
 		glTranslatef(key_Poslight[0][0], key_Poslight[0][1], key_Poslight[0][2]);
@@ -89,9 +89,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT2, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT2, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT2, GL_POSITION, key_Poslight[1]);
-		//glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT2);
 
 		glTranslatef(key_Poslight[1][0], key_Poslight[1][1], key_Poslight[1][2]);
@@ -109,9 +109,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT3, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT3, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT3, GL_POSITION, key_Poslight[2]);
-		//glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT3);
 
 		glTranslatef(key_Poslight[2][0], key_Poslight[2][1], key_Poslight[2][2]);
@@ -129,9 +129,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT4, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT4, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT4, GL_POSITION, key_Poslight[3]);
-		//glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT4);
 
 		glTranslatef(key_Poslight[3][0], key_Poslight[3][1], key_Poslight[3][2]);
@@ -149,9 +149,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT5, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT5, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT5, GL_POSITION, key_Poslight[4]);
-		//glLightfv(GL_LIGHT5, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT5, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT5, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT5, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT5);
 
 		glTranslatef(key_Poslight[4][0], key_Poslight[4][1], key_Poslight[4][2]);
@@ -169,9 +169,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT6, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT6, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT6, GL_POSITION, key_Poslight[5]);
-		//glLightfv(GL_LIGHT6, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT6, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT6, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT6, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT6);
 
 		glTranslatef(key_Poslight[5][0], key_Poslight[5][1], key_Poslight[5][2]);
@@ -189,9 +189,9 @@ void Light::light_on()
 		glLightfv(GL_LIGHT7, GL_DIFFUSE, key_DiffuseLight);
 		glLightfv(GL_LIGHT7, GL_SPECULAR, key_SpecularLight);
 		glLightfv(GL_LIGHT7, GL_POSITION, key_Poslight[6]);
-		//glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, direction);
-		//glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, cutoff);
-		//glLightf(GL_LIGHT7, GL_SPOT_EXPONENT, exponent);
+		glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, direction);
+		glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, cutoff);
+		glLightf(GL_LIGHT7, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT7);
 
 		glTranslatef(key_Poslight[6][0], key_Poslight[6][1], key_Poslight[6][2]);
