@@ -34,6 +34,12 @@
     <Filter Include="Light">
       <UniqueIdentifier>{b98ee94e-354c-4176-8d29-924105e71744}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{768fbf40-e017-4959-859b-ca4c7e6f9245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\MainScene">
+      <UniqueIdentifier>{f5d3fa40-1118-48fd-affc-ba26aace3ea7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGLFramework.h">
@@ -81,7 +87,13 @@
     <ClInclude Include="Light.h">
       <Filter>Light</Filter>
     </ClInclude>
-    <ClInclude Include="Skybox_star.h">
+	<ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeIsle.h">
+      <Filter>Scene\MainScene</Filter>
+    </ClInclude>
+	<ClInclude Include="Skybox_star.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -118,6 +130,12 @@
     </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeIsle.cpp">
+      <Filter>Scene\MainScene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

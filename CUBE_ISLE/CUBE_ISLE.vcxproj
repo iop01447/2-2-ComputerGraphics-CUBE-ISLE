@@ -146,10 +146,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CGLFramework.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="CubeIsle.h" />
     <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Fog.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Skybox_star.h" />
     <ClInclude Include="SoundManager.h" />
@@ -161,9 +163,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CGLFramework.cpp" />
+    <ClCompile Include="CubeIsle.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="stdafx.cpp" />

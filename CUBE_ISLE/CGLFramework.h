@@ -10,6 +10,8 @@
 #include "Light.h"
 #include "Skybox_star.h"
 
+class CScene;
+
 class CGLFramework		// c의 의미: c++ 클래스다 / 구조체랑 구분
 {
 public:
@@ -37,6 +39,8 @@ public:
 	void Motion(int x, int y);
 
 	void Timer(int value);
+
+	void PopScene();
 
 	using DrawFunc = void(*)();
 	using ReshapeFunc = void(*)(int, int);
@@ -85,14 +89,23 @@ private:
 	Camera				camera;
 	bool				is_fpv = false;	// 일인칭이냐?
 
+	//	Scene
+	CScene				*m_Scenes[10];
+	int					m_nCurrentScene{ 0 };
+	CScene				*m_pCurrentScene{ nullptr };
+
 	//  사운드 
 	CSoundManager		m_soundmgr;
 
 	//
 	CubeMap				cubemap;
 	Skybox				skybox;
-	
+	Fog					fog;
+	Light				light;
+
 	int					player_y_rot = 180;
+	int					current_time;
+	int					frame_time;
 
 	Fog					fog;
 

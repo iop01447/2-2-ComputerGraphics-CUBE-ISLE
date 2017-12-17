@@ -105,11 +105,11 @@ void Zakka::draw_aabb() {
 	aabb.draw();
 }
 
-void Zakka::move(Camera& camera)
+void Zakka::move(int frame_time, Camera& camera)
 {
 	Vector3 add;
-	int speed = 3;
-	if (jump_active) speed = 1;
+	int speed = 3 * frame_time * 0.06;
+	if (jump_active) speed = 1.5 * frame_time * 0.06;
 	add = camera.GetLookVector().normalize();
 	add.y = 0;
 	add *= speed;
@@ -138,11 +138,11 @@ void Zakka::move(Camera& camera)
 	camera.SetFpvPosition(pos);
 }
 
-void Zakka::move_back(Camera& camera)
+void Zakka::move_back(int frame_time, Camera& camera)
 {
 	Vector3 add;
-	int speed = 3;
-	if (jump_active) speed = 1;
+	int speed = 3 * frame_time * 0.06;
+	if (jump_active) speed = 1.5 * frame_time * 0.06;
 	add = camera.GetLookVector().normalize();
 	add.y = 0;
 	add *= speed;

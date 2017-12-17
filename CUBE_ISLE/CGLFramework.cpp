@@ -17,11 +17,14 @@ void CGLFramework::Initialize(int argc, char * argv[], int width, int height, in
 	glutCreateWindow(caption);
 
 	// 사운드
-	m_soundmgr.AddSound("BGM", "Sound/RefunctGameOst.mp3", SoundType::Stream);
+	m_soundmgr.AddSound("BGM", "Sound/Refunct_Game_Ost.mp3", SoundType::Stream);
 	PushPlayQueue("BGM", Vector3(0, 0, 0));
-//	m_soundmgr.AddSound("Click", "Sound/Equip.wav", 700, 1000); // cube 크기 기준으로
+	m_soundmgr.AddSound("Warning", "Sound/Bomb_Timer_Sound_Effect.mp3", 700, 1000); // cube 크기 기준으로
+	m_soundmgr.AddSound("GetKey", "Sound/Super Mario Bros - Coin Sound Effect.mp3", 700, 1000); // cube 크기 기준으로
 
 	skybox.init();
+
+	current_time = glutGet(GLUT_ELAPSED_TIME);
 }
 
 void CGLFramework::Run()
@@ -133,7 +136,6 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 	}
 	else if (key == ' ') { // 제어점 추가
 		cubemap.player.jump_active = true;
-		//	PushPlayQueue("Click", cube.cardinal.current_pts);
 	}
 	else if (key == '1') {
 		is_fpv = true;
@@ -206,6 +208,8 @@ void CGLFramework::Motion(int x, int y)
 
 void CGLFramework::Timer(int value)
 {
+	frame_time = glutGet(GLUT_ELAPSED_TIME) - current_time;
+
 	if (is_fpv) {
 		// pos at up
 		Vector3 at = cubemap.player.pos;
@@ -220,7 +224,7 @@ void CGLFramework::Timer(int value)
 		m_soundmgr.Play(info.first, info.second);
 	}
 
-	cubemap.update(camera, is_fpv);
+	cubemap.update(frame_time, camera, is_fpv, m_soundmgr);
 	for (int i = 0; i < 7; ++i)
 	{
 		if (cubemap.key[i].exsist == false)
@@ -235,6 +239,8 @@ void CGLFramework::Timer(int value)
 	fog.update(light.r, light.g, light.b);
 	if (star.exist)
 		star.update();
+
+	current_time = glutGet(GLUT_ELAPSED_TIME);
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 	glutPostRedisplay();

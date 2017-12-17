@@ -4,6 +4,7 @@
 #include "Zakka.h"
 #include "Key.h"
 #include "Camera.h"
+#include "SoundManager.h"
 
 #define MAP_SIZE 20
 #define Y_SIZE 3
@@ -15,8 +16,11 @@ public:
 	Zakka player;
 	Key key[7];
 	int key_cube_index[7][3];
-	bool is_unbeatable = false;
+	bool is_unbeatable = true;
 	Vector3 key_color;
+	int player_cube[3]; // player가 위치한 큐브의 index
+	int player_cube_total_frame_time = 0; // player가 똑같은 큐브 위에 얼마나 있었나
+	bool warning = false;
 
 	CubeMap() {
 		Init();
@@ -130,50 +134,82 @@ public:
 			key[i].draw_aabb();
 	}
 
-	void update(Camera& camera, bool is_fpv) {
+	void update(int frame_time, Camera& camera, bool is_fpv, CSoundManager& soundmanager) {
+		// 키
 		for(int i=0; i<7; i++)
 			key[i].Update();
 		
 		// 중력 & 점프
 		player.update();
-		if (collide_check_player_map())
+		if (collide_check_player_map(soundmanager))
 			player.update_back();
 		if (player.pos.y < -100) {
-			player_dead();
+			player_dead(false);
 		}
 
-		// 큐브 애니
+		// 큐브 부시기
+		if(is_fpv || warning)
+			player_cube_total_frame_time += frame_time;
+		if (!warning && player_cube_total_frame_time > 1000 * 2) {
+			warning = true;
+			PushPlayQueue("Warning", map[player_cube[0]][player_cube[1]][player_cube[2]].pos);
+			player_cube_total_frame_time = 0;
+		}
+		if (warning && player_cube_total_frame_time > 1000 * 2.5) {
+			warning = false;
+			int i = player_cube[0];
+			int j = player_cube[1];
+			int k = player_cube[2];
+
+			if (!map[i][j][k].ani) {
+				map[i][j][k].ani_initialize();
+				if (j == 0) {
+					map[i][j][k].is_sea = true;
+					map[i][j][k].color = Vector3{ 34.f,213.f,249.f }.color();
+				}
+				else
+					map[i][j][k].exsist = false;
+			}
+		}
+
+		// 큐브 부쉬기 애니
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < Y_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
-					if (!map[i][j][k].exsist) continue;
-					map[i][j][k].update();
+					map[i][j][k].ani_update(frame_time);
 				}
 			}
 		}
 
 		// 이동
 		if (!is_fpv) return;
-		player.move(camera);
+		player.move(frame_time, camera);
 	//	player.key = 0;
-		if (collide_check_player_map()) {
-			player.move_back(camera);
+		if (collide_check_player_map(soundmanager)) {
+			player.move_back(frame_time, camera);
 			player.key = player.back_key = 0;
 		}
 		collide_check_player_key();
 	}
 
-	bool collide_check_player_map() {
+	bool collide_check_player_map(CSoundManager& soundmanager) {
 		for (int i = 0; i < MAP_SIZE; i++) {
 			for (int j = 0; j < Y_SIZE; j++) {
 				for (int k = 0; k < MAP_SIZE; k++) {
 					if (!map[i][j][k].exsist) continue;
 					if (AabbAabbIntersection(player.aabb, map[i][j][k].aabb)) {
-						if(!map[i][j][k].ani)
-							map[i][j][k].ani_initialize();
 						if (map[i][j][k].is_sea) {
 							player_dead();
 						}
+						if (player_cube[0] != i || player_cube[1] != j || player_cube[2] != k) {
+							player_cube_total_frame_time = 0;
+							if(warning)
+								soundmanager.Stop("Warning");
+							warning = false;
+						}
+						player_cube[0] = i;
+						player_cube[1] = j;
+						player_cube[2] = k;
 						return true;
 					}
 				}
@@ -187,6 +223,7 @@ public:
 			if (!key[i].exsist) continue;
 			if (AabbAabbIntersection(player.aabb, key[i].aabb)) {
 				player.get_key_num++;
+				PushPlayQueue("GetKey", key[i].pos);
 				key[i].exsist = false;
 				map[key_cube_index[i][0]][key_cube_index[i][1]][key_cube_index[i][2]].color 
 					= Vector3{ clamp((key_color.x * 255) - 50 - rand() % 77, 0.f, 255.f) ,
@@ -209,8 +246,10 @@ public:
 		return false;
 	}
 
-	void player_dead() {
+	void player_dead(bool sea_dead = true) {
 		if (is_unbeatable) {
+			if (sea_dead) cout << "바다에 닿아서 ";
+			else cout << "맵 밖으로 떨어져서 ";
 			cout << "사망" << endl;
 			return;
 		}

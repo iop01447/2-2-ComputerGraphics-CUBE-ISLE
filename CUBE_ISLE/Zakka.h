@@ -23,8 +23,8 @@ public:
 	void Init_aabb();
 	void Draw();
 	void draw_aabb();
-	void move(Camera& camera);
-	void move_back(Camera& camera);
+	void move(int, Camera& camera);
+	void move_back(int, Camera& camera);
 	void jump();
 	void yRotate(Vector3& add, int angle);
 	void update();
