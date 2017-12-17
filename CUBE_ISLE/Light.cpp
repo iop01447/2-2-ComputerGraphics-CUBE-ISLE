@@ -45,9 +45,10 @@ void Light::light_global()
 void Light::pos_init(Vector3 key_pos, int num)
 {
 	key_Poslight[num][0] = key_pos.x;
-	key_Poslight[num][1] = key_pos.y + 6;
+	key_Poslight[num][1] = key_pos.y + 15; // 6
 	key_Poslight[num][2] = key_pos.z;
-	key_Poslight[num][3] = 0.1f;
+//	key_Poslight[num][3] = 0.1f;
+	key_Poslight[num][3] = 1.f;
 }
 
 void Light::light_on()
