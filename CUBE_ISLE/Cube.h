@@ -9,6 +9,9 @@ public:
 	int size;
 	Aabb aabb;
 	bool is_sea = false;
+	bool ani = false;
+	Vector3 ani_cube_pos[50];
+	Vector3 ani_random_vector[50];
 
 	Cube() = default;
 	~Cube() = default;
@@ -24,6 +27,15 @@ public:
 			glColor3fv(&color);
 		glutSolidCube(size);
 		glPopMatrix();
+
+		// 애니 //
+		if (!ani) return;
+		for (int i = 0; i < 50; i++) {
+			glPushMatrix();
+			glTranslatef(ani_cube_pos[i].x, ani_cube_pos[i].y, ani_cube_pos[i].z);
+			glutSolidCube(5);
+			glPopMatrix();
+		}
 	}
 
 	void draw_aabb() {
@@ -32,7 +44,20 @@ public:
 		aabb.draw();
 	}
 
-	void broken_ani() {
+	void update() {
+		// 애니메이션
+		if (ani) {
+			for (int i = 0; i < 50; i++) {
+			//	ani_cube_pos[i] += ani_random_vector[i] * 0.1;
+			}
+		}
+	}
 
+	void ani_initialize() {
+		ani = true;
+		for (int i = 0; i < 50; i++) {
+			ani_cube_pos[i] = pos + Vector3{ -10.f + rand() % 20, -10.f + rand() % 20 - size * 4, -10.f + rand() % 20 };
+			ani_random_vector[i] = { -5.f + rand() % 10, -5.f + rand() % 10 ,-5.f + rand() % 10 };
+		}
 	}
 };
