@@ -47,7 +47,7 @@ void Light::pos_init(Vector3 key_pos, int num)
 	key_Poslight[num][0] = key_pos.x;
 	key_Poslight[num][1] = key_pos.y + 6;
 	key_Poslight[num][2] = key_pos.z;
-	key_Poslight[num][3] = 1.0f;
+	key_Poslight[num][3] = 0.1f;
 }
 
 void Light::light_on()
@@ -60,6 +60,8 @@ void Light::light_on()
 	glutSolidSphere(20, 12, 12);
 	glPopMatrix();
 
+	glEnable(GL_NORMALIZE);
+	glNormal3f(0.0f, 1.0f, 0.0f);
 	glDisable(GL_CULL_FACE);
 	//light 1
 	if (exist[0] == true)
@@ -201,6 +203,7 @@ void Light::light_on()
 		glutSolidCone(key_light_size, key_light_size, 4, 4);
 		glPopMatrix();
 	}
+	glDisable(GL_NORMALIZE);
 	glEnable(GL_CULL_FACE);
 }
 

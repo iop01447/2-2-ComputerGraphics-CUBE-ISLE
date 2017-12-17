@@ -17,19 +17,19 @@ public:
 	GLint global_rot_cnt = 0;
 	GLboolean global_state = false;
 
-	GLfloat key_AmbientLight[4] = { 0.6f, 0.6f, 0.6f, 0.4f };
-	GLfloat key_DiffuseLight[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
-	GLfloat key_SpecularLight[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	void init();
+	void light_global();
+
+	GLfloat key_AmbientLight[4] = { 0.2f, 0.2f, 0.2f, 0.2f };
+	GLfloat key_DiffuseLight[4] = { 0.2f, 0.2f, 0.2f, 0.2f };
+	GLfloat key_SpecularLight[4] = { 0.4f,  0.4f ,0.4f ,0.4f };
 	GLfloat key_Poslight[7][4];
-	float direction[3] = { 0,0,-1 };
-	float cutoff = 30;
-	float exponent = -10;
+	float direction[3] = { 0,-1,0 };
+	float cutoff = 5;
+	float exponent = -5;
 	float key_light_size = 2;
 	GLint light_rot = 0;
 	bool exist[7] = { true };
-
-	void init();
-	void light_global();
 
 	void pos_init(Vector3 key_pos, int num);
 	void light_on();

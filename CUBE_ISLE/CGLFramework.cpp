@@ -63,8 +63,8 @@ void CGLFramework::Render()
 
 	glEnable(GL_FOG);
 	fog.draw();
-	cubemap.draw();
 	light.light_on();
+	cubemap.draw();
 }
 
 void CGLFramework::Reshape(int w, int h)
