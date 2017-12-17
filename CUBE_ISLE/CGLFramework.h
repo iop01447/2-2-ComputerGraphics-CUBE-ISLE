@@ -1,13 +1,6 @@
 #pragma once
 #include "stdafx.h"
-#include "Camera.h"
-#include "SoundManager.h"
-#include "Zakka.h"
-#include "Key.h"
-#include "CubeMap.h"
-#include "Skybox.h"
-#include "Fog.h"
-#include "Light.h"
+#include "CubeIsle.h"
 
 class CScene;
 
@@ -79,30 +72,13 @@ private:
 	MotionFunc			fnMotion{ nullptr };
 
 	int					m_fps = 16;	// 60 frame
-
-	//
-	Vector2				mStart;
-	Vector2				mEnd;
-	bool				drag = false;
-
-	Camera				camera;
-	bool				is_fpv = false;	// 일인칭이냐?
+	int					current_time;
+	int					frame_time;
 
 	//	Scene
 	CScene				*m_Scenes[10];
 	int					m_nCurrentScene{ 0 };
 	CScene				*m_pCurrentScene{ nullptr };
 
-	//  사운드 
-	CSoundManager		m_soundmgr;
-
-	//
-	CubeMap				cubemap;
-	Skybox				skybox;
-	Fog					fog;
-	Light				light;
-
-	int					player_y_rot = 180;
-	int					current_time;
-	int					frame_time;
+	CubeIsle			m_CubeIsle;
 };

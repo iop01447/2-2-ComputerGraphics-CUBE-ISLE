@@ -1,6 +1,6 @@
 #pragma once
 
-class CWin32Framework;
+class CGLFramework;
 
 class CScene
 {
@@ -8,24 +8,28 @@ public:
 	CScene();
 	virtual ~CScene();
 
-	virtual void Update(float fTimeElapsed);
+	virtual void Initialize(CGLFramework * pFramework);
 
-	virtual void Draw(HDC hDC);
+	virtual void Run();
 
-	virtual bool Keyboard(UINT message, WPARAM wParam, LPARAM lParam);
+	virtual void DrawScene();
 
-	virtual bool Mouse(UINT message, WPARAM wParam, LPARAM lParam);
+	virtual void Render();
 
-	virtual bool SETCURSOR();
+	virtual void Reshape(int w, int h);
 
-	virtual bool Initialize(CWin32Framework* pFramework, HWND hWnd);
+	virtual void Keyboard(unsigned char key, int x, int y);
 
-	virtual void ReleaseObjects();
+	virtual void SpecialKeyboard(int key, int x, int y);
 
+	virtual void Mouse(int button, int state, int x, int y);
+
+	virtual void Motion(int x, int y);
+
+	virtual void Timer(int frame_time);
 
 protected:
 
-	CWin32Framework	*	m_Framework	{ nullptr }	;
-	HWND				m_hWnd		{ nullptr }	;
+	CGLFramework*	m_Framework	{ nullptr }	;
 };
 
