@@ -14,7 +14,9 @@ Light::~Light()
 
 void Light::init()
 {
-	r = g = b = 0.3f;
+	r = 0.2f;
+	g = 0.1f;
+	b = 0.1f;
 	global_rot = 0;
 	global_rot_cnt = 0;
 	global_state = false;
@@ -76,7 +78,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT1);
-
+	
 		glTranslatef(key_Poslight[0][0], key_Poslight[0][1], key_Poslight[0][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -96,7 +98,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT2);
-
+	
 		glTranslatef(key_Poslight[1][0], key_Poslight[1][1], key_Poslight[1][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -116,7 +118,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT3, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT3);
-
+	
 		glTranslatef(key_Poslight[2][0], key_Poslight[2][1], key_Poslight[2][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -136,7 +138,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT4, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT4);
-
+	
 		glTranslatef(key_Poslight[3][0], key_Poslight[3][1], key_Poslight[3][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -156,7 +158,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT5, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT5);
-
+	
 		glTranslatef(key_Poslight[4][0], key_Poslight[4][1], key_Poslight[4][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -176,7 +178,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT6, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT6);
-
+	
 		glTranslatef(key_Poslight[5][0], key_Poslight[5][1], key_Poslight[5][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -196,7 +198,7 @@ void Light::light_on()
 		glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, cutoff);
 		glLightf(GL_LIGHT7, GL_SPOT_EXPONENT, exponent);
 		glEnable(GL_LIGHT7);
-
+	
 		glTranslatef(key_Poslight[6][0], key_Poslight[6][1], key_Poslight[6][2]);
 		glColor4fv(key_AmbientLight);
 		glRotatef(light_rot, 0.0f, 1.0f, 0.0f);
@@ -226,7 +228,7 @@ void Light::update()
 {
 	light_rot = (light_rot + 2) % 360;
 	global_rot_cnt++;
-	if (global_rot_cnt > 5)
+	if (global_rot_cnt > 0)
 	{
 		global_rot = (global_rot + 1) % 360;
 		if (global_rot == 180 || global_rot == 0)
@@ -238,9 +240,9 @@ void Light::update()
 		{
 			if (r < 0.8f)
 			{
-				r += 2.0f / 360.0f;
+				r += 4.0f / 360.0f;
 				g += 2.0f / 360.0f;
-				b += 2.0f / 360.0f;
+				b += 1.0f / 360.0f;
 				AmbientLight[0] = r;
 				AmbientLight[1] = g;
 				AmbientLight[2] = b;
@@ -248,11 +250,11 @@ void Light::update()
 		}
 		else if (global_state)
 		{
-			if (r > 0.3f)
+			if (r > 0.2f)
 			{
-				r -= 2.0f / 360.0f;
+				r -= 4.0f / 360.0f;
 				g -= 2.0f / 360.0f;
-				b -= 2.0f / 360.0f;
+				b -= 1.0f / 360.0f;
 				AmbientLight[0] = r;
 				AmbientLight[1] = g;
 				AmbientLight[2] = b;

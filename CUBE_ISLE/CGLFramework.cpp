@@ -61,9 +61,9 @@ void CGLFramework::Render()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glFrontFace(GL_CCW);
 
+	light.light_on();
 	glEnable(GL_FOG);
 	fog.draw();
-	light.light_on();
 	cubemap.draw();
 }
 

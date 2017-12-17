@@ -11,7 +11,7 @@ public:
 	GLfloat DiffuseLight[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
 	GLfloat SpecularLight[4] = { 0.5f, 0.5f, 0.5f, 0.5f };
 	GLint Shininess = 128;
-	GLfloat Poslight[4] = { 0.0f, WIDTH / 4, 0.0f, 1.0f };
+	GLfloat Poslight[4] = { 0.0f, 2 * WIDTH / 3, 0.0f, 1.0f };
 	GLfloat r, g, b;
 	GLint global_rot = 0;
 	GLint global_rot_cnt = 0;
